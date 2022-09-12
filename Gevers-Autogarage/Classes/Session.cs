@@ -8,7 +8,28 @@ namespace Gevers_Autogarage.Classes
 {
     public class Session
     {
-        public bool LoggedIn { get; set; }
-        public string UserName { get; set; }
+        private static bool loggedIn;
+
+        public static bool LoggedIn
+        {
+            get { return loggedIn; }
+            set { loggedIn = value; }
+        }
+        private static string username;
+
+        public static string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        private static bool isEmployee;
+
+        public static bool IsEmpmloyee
+        {
+            get { return isEmployee; }
+            set { isEmployee = value; }
+        }
+
     }
 }

@@ -33,13 +33,24 @@ namespace Gevers_Autogarage
 
             int constructionYear = int.Parse(tbxConstructionYear.Text);
             decimal droveKM = decimal.Parse(tbxDroveKm.Text);
-            decimal purchaseValue = decimal.Parse(tbxPurchaseValue.Text);
+            double purchaseValue = double.Parse(tbxPurchaseValue.Text);
 
-            decimal totalPrice = 0;
+
+            decimal carValue = droveKM / 1000;
+            
+            double totalPrice = 0;
 
             // Calculate the age of the car
             DateTime localDate = DateTime.Now;
             int carAge = localDate.Year - constructionYear;
+
+            double pow = Math.Pow(double.Parse(carValue.ToString()), carAge);
+            
+            totalPrice = purchaseValue - pow;
+            MessageBox.Show(totalPrice.ToString());
+            //Je zet €225,-op de bank tegen 4,5 % rente per jaar. Hoeveel heb je na 10 jaar?
+            //Antwoord: €225,- × 1,045(macht)10 = €349,-
+
 
 
         }

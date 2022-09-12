@@ -25,7 +25,7 @@ namespace Gevers_Autogarage.Classes
                 builder.UserID = "root";
                 //builder.Password = "Lekkeretaart";
                 builder.Password = "";
-                builder.Database = "fietsenverhuur";
+                builder.Database = "garage-gevers";
                 conn = new MySqlConnection(builder.ToString());
                 return conn;
             }
@@ -35,19 +35,20 @@ namespace Gevers_Autogarage.Classes
             }
         }
 
-        public static bool Login(string userName, string passWord)
+        public static string Login(string userName, string passWord)
         {
             conn.Open();
-            bool loginSuccessful = false;
+            string loginSuccessful = "";
 
-            string sql = "SELECT* FROM medewerker WHERE voornaam='" + userName + "'AND datum_in_dienst='" + passWord + "'";
+            string sql = "SELECT * FROM users WHERE username='" + userName + "'AND password='" + passWord + "'";
 
             MySqlCommand sqlCommand = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();
 
             if (rdr.HasRows)
             {
-                loginSuccessful = true;
+                
+                loginSuccessful = rdr.ToString();
             }
             conn.Close();
             return loginSuccessful;

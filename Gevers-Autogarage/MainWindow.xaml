@@ -8,16 +8,24 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="btnTradeValue" Grid.Column="0" Grid.Row="0" Height="60px" Width="200px" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inruilwaarde berekenen" Click="btnTradeValue_Click"/>
-        <Button x:Name="btnCreateCar" Grid.Column="0" Grid.Row="1" Height="60px" Width="200px" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Auto aanmaken"/>
+        <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Label x:Name="lblUsername" FontSize="20" MinWidth="120" MinHeight="26" Margin="10,10,20,10"/>
+
+        </WrapPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button x:Name="btnTradeValue" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inruilwaarde berekenen" Click="btnTradeValue_Click"/>
+            <Button x:Name="btnCreateCar" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Auto aanmaken" Click="btnCreateCar_Click"/>
+            <Button x:Name="btnShowOrders" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bestellingen bekijken" Click="btnShowOrders_Click"/>
+        </StackPanel>
+       
     </Grid>
 </Window>

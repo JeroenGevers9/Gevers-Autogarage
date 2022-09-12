@@ -28,11 +28,11 @@ namespace Gevers_Autogarage
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password))
+            string sessionData = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
+            if (sessionData != "")
             {
-                Classes.Session session = new Classes.Session();
-                session.LoggedIn = true;
-                session.UserName = tbxUsername.Text;
+                Classes.Session.LoggedIn = true;
+                Classes.Session.Username = tbxUsername.Text;
                 var mw = new MainWindow();
                 mw.Show();
                 this.Hide();
@@ -41,7 +41,7 @@ namespace Gevers_Autogarage
             {
                 tbxUsername.Text = "";
                 pwbPassword.Password = "";
-                MessageBox.Show("Invalid Username or Password (combination), please try again.");
+                MessageBox.Show("Invalid Username or Password (combination, please try again.");
             }
         }
     }

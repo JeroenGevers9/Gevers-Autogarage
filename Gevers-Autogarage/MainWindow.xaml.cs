@@ -23,6 +23,7 @@ namespace Gevers_Autogarage
         public MainWindow()
         {
             InitializeComponent();
+            buttonVisibility();
         }
 
         private void btnTradeValue_Click(object sender, RoutedEventArgs e)
@@ -30,6 +31,27 @@ namespace Gevers_Autogarage
             TradeValueWindow tvw = new TradeValueWindow();
             tvw.Show();
             this.Close();
+        }
+
+        private void btnCreateCar_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnShowOrders_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonVisibility()
+        {
+            if (Classes.Session.IsEmpmloyee)
+            {
+                btnShowOrders.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnShowOrders.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
