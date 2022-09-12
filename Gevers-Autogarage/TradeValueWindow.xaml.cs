@@ -36,17 +36,19 @@ namespace Gevers_Autogarage
             double purchaseValue = double.Parse(tbxPurchaseValue.Text);
 
 
-            decimal carValue = droveKM / 1000;
-            
-            double totalPrice = 0;
+            decimal carValueLostByKM = droveKM / 1000;
+            string strCarValue = carValueLostByKM.ToString();
 
             // Calculate the age of the car
             DateTime localDate = DateTime.Now;
             int carAge = localDate.Year - constructionYear;
 
-            double pow = Math.Pow(double.Parse(carValue.ToString()), carAge);
-            
-            totalPrice = purchaseValue - pow;
+            double lostValueByAge = Math.Pow(0.90, carAge);
+            double lostValueByKM = Math.Pow(0.995, double.Parse(strCarValue));
+
+            double totalPrice = 0;
+
+            totalPrice = purchaseValue - (lostValueByAge + lostValueByKM);
             MessageBox.Show(totalPrice.ToString());
             //Je zet €225,-op de bank tegen 4,5 % rente per jaar. Hoeveel heb je na 10 jaar?
             //Antwoord: €225,- × 1,045(macht)10 = €349,-
