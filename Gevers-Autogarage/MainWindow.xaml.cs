@@ -35,6 +35,9 @@ namespace Gevers_Autogarage
 
         private void btnCreateCar_Click(object sender, RoutedEventArgs e)
         {
+            CarWindow cw = new CarWindow();
+            cw.Show();
+            this.Close();
         }
 
         private void btnShowOrders_Click(object sender, RoutedEventArgs e)

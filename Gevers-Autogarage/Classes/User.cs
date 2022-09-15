@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gevers_Autogarage.Classes
 {
-    class User
+    public class User
     {
 		private string username;
 

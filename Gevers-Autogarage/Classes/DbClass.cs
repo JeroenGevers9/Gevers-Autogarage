@@ -47,12 +47,36 @@ namespace Gevers_Autogarage.Classes
 
             if (rdr.HasRows)
             {
-                
+
                 loginSuccessful = rdr.ToString();
             }
             conn.Close();
             return loginSuccessful;
         }
 
+        public static bool InsertCar(Car car)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "INSERT INTO cars (brand, model, construction_year, price) VALUES (@brand, @model, @construction_year, @price)";
+
+                command = new MySqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@brand", car.Brand);
+                command.Parameters.AddWithValue("@model", car.Model);
+                command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
+                command.Parameters.AddWithValue("@price", car.Price);
+                command.ExecuteReader();
+
+                conn.Close();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

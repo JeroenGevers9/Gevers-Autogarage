@@ -1,0 +1,23 @@
+﻿<Window x:Class="Gevers_Autogarage.CarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gevers_Autogarage"
+        mc:Ignorable="d"
+        Title="CarWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Label FontSize="20">Merk</Label>
+            <Label FontSize="20">Model</Label>
+            <Label FontSize="20">Bouwjaar</Label>
+
+        </StackPanel>
+    </Grid>
+</Window>

@@ -43,13 +43,14 @@ namespace Gevers_Autogarage
             DateTime localDate = DateTime.Now;
             int carAge = localDate.Year - constructionYear;
 
-            double lostValueByAge = Math.Pow(0.90, carAge);
-            double lostValueByKM = Math.Pow(0.995, double.Parse(strCarValue));
+            double lostValueByAge = Math.Pow(1.2, carAge);
+            double lostValueByKM = Math.Pow(0.9, double.Parse(strCarValue));
 
             double totalPrice = 0;
 
             totalPrice = purchaseValue - (lostValueByAge + lostValueByKM);
-            MessageBox.Show(totalPrice.ToString());
+            double roundedPrice = Math.Round(totalPrice, 2);
+            MessageBox.Show(roundedPrice.ToString());
             //Je zet €225,-op de bank tegen 4,5 % rente per jaar. Hoeveel heb je na 10 jaar?
             //Antwoord: €225,- × 1,045(macht)10 = €349,-
 
