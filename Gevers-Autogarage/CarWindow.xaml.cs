@@ -23,5 +23,25 @@ namespace Gevers_Autogarage
         {
             InitializeComponent();
         }
+
+        private void btnSaveCar_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.Car car = new Classes.Car();
+
+            car.Brand = tbxBrand.Text;
+            car.Model = tbxModel.Text;
+            car.Price = decimal.Parse(tbxPrice.Text);
+            car.ConstructionYear = int.Parse(tbxConstructionYear.Text);
+
+            if(Classes.DbClass.InsertCar(car))
+            {
+                MessageBox.Show("Auto successvol toegevoegd");
+            }
+            else
+            {
+                MessageBox.Show("Er ging iets mis met het toevoegen van de auto.");
+            }
+
+        }
     }
 }

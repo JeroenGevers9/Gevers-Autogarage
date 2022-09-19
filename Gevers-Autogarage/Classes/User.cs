@@ -26,7 +26,7 @@ namespace Gevers_Autogarage.Classes
 
 		private bool isEmployee;
 
-		public bool MyProperty
+		public bool IsEmployee
 		{
 			get { return isEmployee; }
 			set { isEmployee = value; }

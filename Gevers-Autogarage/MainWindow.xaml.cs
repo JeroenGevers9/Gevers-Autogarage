@@ -49,12 +49,28 @@ namespace Gevers_Autogarage
         {
             if (Classes.Session.IsEmpmloyee)
             {
+                btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Visible;
+                lblUsername.Content = Classes.Session.Username;
+
+            }
+            else if(Classes.Session.LoggedIn)
+            {
+                btnLogin.Visibility = Visibility.Hidden;
+                btnShowOrders.Visibility = Visibility.Hidden;
+                lblUsername.Content = Classes.Session.Username;
             }
             else
             {
                 btnShowOrders.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginWindow = new Login();
+            loginWindow.Show();
+            this.Close();
         }
     }
 }

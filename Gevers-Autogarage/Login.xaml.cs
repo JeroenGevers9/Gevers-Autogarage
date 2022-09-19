@@ -22,20 +22,17 @@ namespace Gevers_Autogarage
         public Login()
         {
             InitializeComponent();
-            Classes.DbClass.EstablishConnection();
-
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string sessionData = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
-            if (sessionData != "")
+            Classes.User user = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
+            if (user.Username != "")
             {
-                Classes.Session.LoggedIn = true;
-                Classes.Session.Username = tbxUsername.Text;
+                MessageBox.Show("Welkom " + user.Username);
                 var mw = new MainWindow();
                 mw.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {

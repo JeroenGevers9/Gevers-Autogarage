@@ -18,8 +18,9 @@
 
         <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Label x:Name="lblUsername" FontSize="20" MinWidth="120" MinHeight="26" Margin="10,10,20,10"/>
-
         </WrapPanel>
+        <Button x:Name="btnLogin" Content="Login" Height="30" Width="100" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Click="btnLogin_Click"/>
+
 
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="btnTradeValue" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inruilwaarde berekenen" Click="btnTradeValue_Click"/>

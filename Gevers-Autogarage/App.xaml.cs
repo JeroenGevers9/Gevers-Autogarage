@@ -13,5 +13,19 @@ namespace Gevers_Autogarage
     /// </summary>
     public partial class App : Application
     {
+        void InitializeApp(object sender, StartupEventArgs e)
+        {
+            // Initialze application
+            MainWindow mainWindow = new MainWindow();
+
+            if (Classes.DbClass.EstablishConnection())
+            {
+                mainWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Er is geen connectie met de database mogelijk. Check de server uw server werkt.");
+            }
+        }
     }
 }

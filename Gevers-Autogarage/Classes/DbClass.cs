@@ -16,7 +16,7 @@ namespace Gevers_Autogarage.Classes
         private static MySqlDataAdapter sda;
 
 
-        public static MySqlConnection EstablishConnection()
+        public static bool EstablishConnection()
         {
             try
             {
@@ -27,31 +27,34 @@ namespace Gevers_Autogarage.Classes
                 builder.Password = "";
                 builder.Database = "garage-gevers";
                 conn = new MySqlConnection(builder.ToString());
-                return conn;
+                return true;
             }
             catch (Exception)
             {
-                return new MySqlConnection();
+                return false;
             }
         }
 
-        public static string Login(string userName, string passWord)
+        public static User Login(string userName, string passWord)
         {
             conn.Open();
-            string loginSuccessful = "";
 
             string sql = "SELECT * FROM users WHERE username='" + userName + "'AND password='" + passWord + "'";
 
-            MySqlCommand sqlCommand = new MySqlCommand(sql, conn);
-            MySqlDataReader rdr = sqlCommand.ExecuteReader();
-
-            if (rdr.HasRows)
+            command = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            User user = new User();
+            while (reader.Read())
             {
-
-                loginSuccessful = rdr.ToString();
+                user.Username = reader["username"].ToString();
+                string isEmployee = reader["is_employee"].ToString();
+                if (isEmployee == "1") user.IsEmployee = true; 
             }
             conn.Close();
-            return loginSuccessful;
+
+            setSession(user);
+
+            return user;
         }
 
         public static bool InsertCar(Car car)
@@ -67,7 +70,7 @@ namespace Gevers_Autogarage.Classes
                 command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
                 command.Parameters.AddWithValue("@price", car.Price);
                 command.ExecuteReader();
-
+                
                 conn.Close();
 
                 return true;
@@ -77,6 +80,12 @@ namespace Gevers_Autogarage.Classes
                 return false;
             }
 
+        }
+        static void setSession(User user)
+        {
+            Classes.Session.LoggedIn = true;
+            Classes.Session.Username = user.Username;
+            Classes.Session.IsEmpmloyee = user.IsEmployee;
         }
     }
 }

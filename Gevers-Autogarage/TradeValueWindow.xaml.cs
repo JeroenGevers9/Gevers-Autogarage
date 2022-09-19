@@ -57,5 +57,12 @@ namespace Gevers_Autogarage
 
 
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+        }
     }
 }
