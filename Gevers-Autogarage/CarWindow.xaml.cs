@@ -30,7 +30,7 @@ namespace Gevers_Autogarage
 
             car.Brand = tbxBrand.Text;
             car.Model = tbxModel.Text;
-            car.Price = decimal.Parse(tbxPrice.Text);
+            car.setPrice(tbxPrice.Text);
             car.ConstructionYear = int.Parse(tbxConstructionYear.Text);
 
             if(Classes.DbClass.InsertCar(car))

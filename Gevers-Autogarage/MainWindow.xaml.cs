@@ -47,18 +47,18 @@ namespace Gevers_Autogarage
 
         private void buttonVisibility()
         {
-            if (Classes.Session.IsEmpmloyee)
+            if (Classes.Session.getIsEmployee())
             {
                 btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Visible;
-                lblUsername.Content = Classes.Session.Username;
+                lblUsername.Content = Classes.Session.getUserName();
 
             }
-            else if(Classes.Session.LoggedIn)
+            else if(Classes.Session.getLoggedIn())
             {
                 btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Hidden;
-                lblUsername.Content = Classes.Session.Username;
+                lblUsername.Content = Classes.Session.getUserName();
             }
             else
             {

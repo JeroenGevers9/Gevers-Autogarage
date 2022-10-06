@@ -33,12 +33,17 @@ namespace Gevers_Autogarage.Classes
 			set { construction_year = value; }
 		}
 
-		private decimal price;
+		//private decimal price;
 
 		public decimal Price
 		{
-			get { return price; }
-			set { price = value; }
+			get; //{ return price; }
+			private set;// { price = value; }
+		}
+
+		public void setPrice(string price)
+		{
+			Price = decimal.Parse(price);
 		}
 
 	}

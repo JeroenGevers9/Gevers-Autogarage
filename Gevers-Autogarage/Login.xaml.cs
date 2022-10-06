@@ -27,6 +27,7 @@ namespace Gevers_Autogarage
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             Classes.User user = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
+            
             if (user.Username != "")
             {
                 MessageBox.Show("Welkom " + user.Username);

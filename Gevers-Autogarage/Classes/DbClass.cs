@@ -44,6 +44,7 @@ namespace Gevers_Autogarage.Classes
             command = new MySqlCommand(sql, conn);
             MySqlDataReader reader = command.ExecuteReader();
             User user = new User();
+           
             while (reader.Read())
             {
                 user.Username = reader["username"].ToString();
@@ -52,7 +53,7 @@ namespace Gevers_Autogarage.Classes
             }
             conn.Close();
 
-            setSession(user);
+            Classes.Session.setSession(user);
 
             return user;
         }
@@ -72,20 +73,21 @@ namespace Gevers_Autogarage.Classes
                 command.ExecuteReader();
                 
                 conn.Close();
-
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
+            finally
+            {
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
 
         }
-        static void setSession(User user)
-        {
-            Classes.Session.LoggedIn = true;
-            Classes.Session.Username = user.Username;
-            Classes.Session.IsEmpmloyee = user.IsEmployee;
-        }
+        
     }
 }

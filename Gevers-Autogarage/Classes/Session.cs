@@ -6,29 +6,35 @@ using System.Threading.Tasks;
 
 namespace Gevers_Autogarage.Classes
 {
-    public class Session
+    public static class Session
     {
         private static bool loggedIn;
 
-        public static bool LoggedIn
-        {
-            get { return loggedIn; }
-            set { loggedIn = value; }
-        }
         private static string username;
-
-        public static string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
 
         private static bool isEmployee;
 
-        public static bool IsEmpmloyee
+
+        public static void setSession(User user)
         {
-            get { return isEmployee; }
-            set { isEmployee = value; }
+            username = user.Username;
+            isEmployee = user.IsEmployee;
+            loggedIn = true;
+        }
+
+
+        public static bool getIsEmployee()
+        {
+            return isEmployee;
+        }
+        public static bool getLoggedIn()
+        {
+            return loggedIn;
+        }
+        
+        public static string getUserName()
+        {
+            return username;
         }
 
     }
