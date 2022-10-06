@@ -32,9 +32,5 @@ namespace Gevers_Autogarage.Classes
 			set { isEmployee = value; }
 		}
 
-
-
-
-
 	}
 }

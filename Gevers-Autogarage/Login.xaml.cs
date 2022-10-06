@@ -27,8 +27,8 @@ namespace Gevers_Autogarage
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             Classes.User user = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
-            
-            if (user.Username != "")
+
+            if (user.Username != null)
             {
                 MessageBox.Show("Welkom " + user.Username);
                 var mw = new MainWindow();
@@ -39,7 +39,7 @@ namespace Gevers_Autogarage
             {
                 tbxUsername.Text = "";
                 pwbPassword.Password = "";
-                MessageBox.Show("Invalid Username or Password (combination, please try again.");
+                MessageBox.Show("Invalid Username or Password combination, please try again.");
             }
         }
     }

@@ -14,8 +14,7 @@ namespace Gevers_Autogarage.Classes
         private static MySqlCommand command;
         private static DataTable dt;
         private static MySqlDataAdapter sda;
-
-
+        
         public static bool EstablishConnection()
         {
             try

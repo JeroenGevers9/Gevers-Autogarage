@@ -36,6 +36,9 @@ namespace Gevers_Autogarage
             if(Classes.DbClass.InsertCar(car))
             {
                 MessageBox.Show("Auto successvol toegevoegd");
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                this.Close();
             }
             else
             {
