@@ -10,7 +10,29 @@ namespace Gevers_Autogarage.Classes
 {
     public class DbClass
     {
-       
+        private static MySqlConnection conn;
+        private static MySqlCommand command;
+        private static DataTable dt;
+        private static MySqlDataAdapter sda;
+        
+        public static bool EstablishConnection()
+        {
+            try
+            {
+                MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+                builder.Server = "127.0.0.1";
+                builder.UserID = "root";
+                //builder.Password = "Lekkeretaart";
+                builder.Password = "";
+                builder.Database = "garage-gevers";
+                conn = new MySqlConnection(builder.ToString());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         public static User Login(string userName, string passWord)
         {
