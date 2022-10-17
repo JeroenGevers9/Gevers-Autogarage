@@ -10,6 +10,7 @@ namespace Gevers_Autogarage.Classes
     {
         Automaat,
         Stoelverwarming,
-       Achteruitrijcamera
+        Achteruitrijcamera,
+        Lichtmetalenvelgen,
     }
 }

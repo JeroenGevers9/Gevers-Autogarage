@@ -34,7 +34,6 @@ namespace Gevers_Autogarage.Classes
 		}
 
 		//private decimal price;
-
 		public decimal Price
 		{
 			get; //{ return price; }
@@ -44,6 +43,11 @@ namespace Gevers_Autogarage.Classes
 		public void setPrice(string price)
 		{
 			Price = decimal.Parse(price);
+		}
+
+		public override string ToString()
+		{
+			return brand.ToString() + " " + model.ToString();
 		}
 
 	}

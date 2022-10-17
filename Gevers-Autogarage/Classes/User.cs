@@ -8,29 +8,32 @@ namespace Gevers_Autogarage.Classes
 {
     public class User
     {
-		private string username;
-
 		public string Username
 		{
-			get { return username; }
-			set { username = value; }
+			get;
+			private set;
 		}
-
+	
 		private string password;
 
 		public string Password
 		{
-			get { return password; }
-			set { password = value; }
+			get;
+			private set;
 		}
 
 		private bool isEmployee;
 
 		public bool IsEmployee
 		{
-			get { return isEmployee; }
-			set { isEmployee = value; }
+			get;
+			private set;
 		}
 
+
+		public User(string userName)
+		{
+			this.Username = userName;
+		}
 	}
 }

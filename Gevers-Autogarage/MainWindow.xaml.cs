@@ -39,6 +39,12 @@ namespace Gevers_Autogarage
             cw.Show();
             this.Close();
         }
+        private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow ow = new OrderWindow();
+            ow.Show();
+            this.Close();
+        }
 
         private void btnShowOrders_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +57,7 @@ namespace Gevers_Autogarage
             {
                 btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Visible;
+                btnCreateCar.Visibility = Visibility.Visible;
                 lblUsername.Content = Classes.Session.getUserName();
 
             }
@@ -58,6 +65,7 @@ namespace Gevers_Autogarage
             {
                 btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Hidden;
+                btnCreateCar.Visibility = Visibility.Hidden;
                 lblUsername.Content = Classes.Session.getUserName();
             }
             else
