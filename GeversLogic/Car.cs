@@ -11,6 +11,11 @@ namespace GeversLogic
         // getCarDTO
         List<Car> cars = new List<Car>();
         List<CarDTO> carDTOs = new List<CarDTO>();
-        GeversData.Repository.getCarDTO();
+
+
+        Repository repo = new Repository();
+
+
+
     }
 }
