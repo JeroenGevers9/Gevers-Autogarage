@@ -172,5 +172,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeversLogic\GeversLogic.csproj">
+      <Project>{472369ba-d2d0-4227-a315-a29588244e40}</Project>
+      <Name>GeversLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

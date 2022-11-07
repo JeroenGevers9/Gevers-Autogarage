@@ -41,6 +41,7 @@ namespace Gevers_Autogarage
                 lstOptions.Items.Add(accessoire);
             }
 
+           // User user = new User();
         }
 
     }
