@@ -34,35 +34,35 @@ namespace Gevers_Autogarage.Classes
             }
         }
 
-        public static DTO.UserDTO Login(string userName, string passWord)
-        {
-            conn.Open();
+        //public static UserDTO Login(string userName, string passWord)
+        //{
+        //    conn.Open();
 
-            string sql = "SELECT * FROM users WHERE username='" + userName + "'AND password='" + passWord + "'";
+        //    string sql = "SELECT * FROM users WHERE username='" + userName + "'AND password='" + passWord + "'";
 
-            command = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = command.ExecuteReader();
+        //    command = new MySqlCommand(sql, conn);
+        //    MySqlDataReader reader = command.ExecuteReader();
 
-            DTO.UserDTO userDTO = new DTO.UserDTO();
+        //    DTO.UserDTO userDTO = new DTO.UserDTO();
 
-            while (reader.Read())
-            {
-                userDTO.Id = Convert.ToInt32(reader["id"]);
-                userDTO.Username = Convert.ToString(reader["username"]);
-                userDTO.EmployeeId = Convert.ToInt32(reader["employee_id"]);
+        //    while (reader.Read())
+        //    {
+        //        userDTO.Id = Convert.ToInt32(reader["id"]);
+        //        userDTO.Username = Convert.ToString(reader["username"]);
+        //        userDTO.EmployeeId = Convert.ToInt32(reader["employee_id"]);
 
 
-                // User user = new User(reader["username"].ToString());
-                //   user.Username = ;
-                //string isEmployee = reader["is_employee"].ToString();
-                //if (isEmployee == "1") user.IsEmployee = true; 
-            }
-            conn.Close();
+        //        // User user = new User(reader["username"].ToString());
+        //        //   user.Username = ;
+        //        //string isEmployee = reader["is_employee"].ToString();
+        //        //if (isEmployee == "1") user.IsEmployee = true; 
+        //    }
+        //    conn.Close();
 
-            //Classes.Session.setSession(user);
+        //    //Classes.Session.setSession(user);
 
-            return userDTO;
-        }
+        //    return userDTO;
+        //}
 
         public static bool InsertCar(Car car)
         {

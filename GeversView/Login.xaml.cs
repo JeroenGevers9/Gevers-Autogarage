@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Gevers_Autogarage.Classes;
+using GeversLogic;
 
 namespace Gevers_Autogarage
 {
@@ -26,8 +28,7 @@ namespace Gevers_Autogarage
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            DTO.UserDTO user = Classes.DbClass.Login(tbxUsername.Text, pwbPassword.Password);
-
+            User user = User.Login(tbxUsername.Text, pwbPassword.Password);
             if (user.Username != null)
             {
                 MessageBox.Show("Welkom " + user.Username);

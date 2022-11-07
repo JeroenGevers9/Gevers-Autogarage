@@ -8,7 +8,6 @@ namespace Gevers_Autogarage.Classes
 {
 	public class Car
 	{
-
 		private string model;
 
 		public string Model
@@ -49,6 +48,7 @@ namespace Gevers_Autogarage.Classes
 		{
 			return brand.ToString() + " " + model.ToString();
 		}
+
 
 	}
 }

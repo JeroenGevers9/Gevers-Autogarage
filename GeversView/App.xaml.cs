@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gevers_Autogarage;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace GeversView
     /// </summary>
     public partial class App : Application
     {
+        void InitializeApp(object sender, StartupEventArgs e)
+        {
+            // Do something before start
+
+            MainWindow mw = new MainWindow();
+            mw.Show();
+        }
     }
 }

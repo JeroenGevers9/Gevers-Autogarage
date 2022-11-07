@@ -15,12 +15,12 @@ namespace Gevers_Autogarage.Classes
         private static bool isEmployee;
 
 
-        public static void setSession(User user)
-        {
-            username = user.Username;
-            isEmployee = user.IsEmployee;
-            loggedIn = true;
-        }
+        //public static void setSession(User user)
+        //{
+        //    username = user.Username;
+        //    isEmployee = user.IsEmployee;
+        //    loggedIn = true;
+        //}
 
 
         public static bool getIsEmployee()
