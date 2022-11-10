@@ -15,33 +15,27 @@ namespace GeversData
 
         public static bool EstablishConnection()
         {
-            string connString = @"Server=127.0.0.1\myInstanceName;Database=garage-gevers;Integrated Security=true;";
+            //string connString = @"Server=127.0.0.1;Database=garage-gevers;Integrated Security=true;";
+           // string connString1 = @"Data Source=DESKTOP-COUET6S;Initial Catalog=garage-gevers;User ID=root;Password=";
+            //"DESKTOP-COUET6S"
+
             try
             {
-                conn = new SqlConnection();
-                conn.ConnectionString = connString;
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                builder.DataSource = "127.0.0.1";
+                builder.UserID = "root";
+                builder.Password = "";
+                builder.InitialCatalog = "garage-gevers";
+                conn = new SqlConnection(builder.ToString());
                 conn.Open();
+
                 return true;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return false;
+                throw exception;
             }
-            //try
-            //{
-            //    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            //    builder.Server = "127.0.0.1";
-            //    builder.UserID = "root";
-            //    //builder.Password = "Lekkeretaart";
-            //    builder.Password = "";
-            //    builder.Database = "garage-gevers";
-            //    conn = new SqlConnection(builder.ToString());
-            //    return true;
-            //}
-            //catch (Exception)
-            //{
-            //    return false;
-            //}
+        
         }
 
         public static UserDTO Login(string userName, string passWord)
@@ -50,6 +44,8 @@ namespace GeversData
 
             if (EstablishConnection())
             {
+
+
                 string sql = "SELECT * FROM users WHERE username='" + userName + "'AND password='" + passWord + "'";
 
                 command = new SqlCommand(sql, conn);
@@ -61,7 +57,6 @@ namespace GeversData
                     userDTO.Id = Convert.ToInt32(reader["id"]);
                     userDTO.Username = Convert.ToString(reader["username"]);
                     userDTO.EmployeeId = Convert.ToInt32(reader["employee_id"]);
-
 
                     // User user = new User(reader["username"].ToString());
                     //   user.Username = ;
