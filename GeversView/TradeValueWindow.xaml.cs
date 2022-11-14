@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Gevers_Autogarage
+namespace GeversView
 {
     /// <summary>
     /// Interaction logic for TradeValueWindow.xaml

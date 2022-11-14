@@ -9,13 +9,13 @@ namespace GeversLogic
     {
 
         // getCarDTO
-        List<Car> cars = new List<Car>();
+        private List<Car> cars = new List<Car>();
         List<CarDTO> carDTOs = new List<CarDTO>();
 
 
         Repository repo = new Repository();
 
-        public List<Car> getAllCars()
+		public List<Car> getAllCars()
         {
 
             foreach(CarDTO dto in Repository.getCarDTOs())
@@ -26,14 +26,11 @@ namespace GeversLogic
 				car.Price = dto.Price;
 				car.ConstructionYear = dto.ConstructionYear;
 
-
 				cars.Add(car);
 			}
 
 			return cars;
 		}
-
-
 
 		private string model;
 

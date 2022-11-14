@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Gevers_Autogarage.Classes;
+using GeversView.Classes;
 using GeversLogic;
 
-namespace Gevers_Autogarage
+namespace GeversView
 {
     /// <summary>
     /// Interaction logic for Login.xaml

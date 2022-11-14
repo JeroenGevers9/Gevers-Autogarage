@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gevers_Autogarage.Classes
+namespace GeversView.Classes
 {
     public class DbClass
     {
