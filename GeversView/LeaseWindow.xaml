@@ -8,7 +8,7 @@
         Title="LeaseWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -24,7 +24,7 @@
             <TextBox x:Name="tbxDistancePerYear" />
             
              <Label  FontSize="20" Content="Auto keuzes:"/>
-            <ListBox x:Name="lbxCars" Height="30" SelectionMode="Extended" SelectionChanged="onChange">
+            <ListBox x:Name="lbxCars" Height="auto" SelectionMode="Extended" SelectionChanged="onChange">
             </ListBox>
         </StackPanel>
         

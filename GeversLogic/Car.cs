@@ -5,72 +5,24 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public class Car
+    public class Car : CarDTO
     {
-
-        // getCarDTO
-        private List<Car> cars = new List<Car>();
-        List<CarDTO> carDTOs = new List<CarDTO>();
-
-
-        Repository repo = new Repository();
-
-		public List<Car> getAllCars()
-        {
-
-            foreach(CarDTO dto in Repository.getCarDTOs())
-            {
-                Car car = new Car();
-                car.Model = dto.Model;
-				car.Brand = dto.Brand;
-				car.Price = dto.Price;
-				car.ConstructionYear = dto.ConstructionYear;
-
-				cars.Add(car);
-			}
-
-			return cars;
+		public Car(CarDTO carDTO)
+		{
+			this.Model = carDTO.Model;
+			this.Brand = carDTO.Brand;
+			this.ConstructionYear = carDTO.ConstructionYear;
+			this.Price = carDTO.Price;
 		}
 
-		private string model;
-
-		public string Model
+		public void addAccessoire()
 		{
-			get { return model; }
-			set { model = value; }
-		}
-
-		private string brand;
-
-		public string Brand
-		{
-			get { return brand; }
-			set { brand = value; }
-		}
-
-		private int construction_year;
-
-		public int ConstructionYear
-		{
-			get { return construction_year; }
-			set { construction_year = value; }
-		}
-
-		//private decimal price;
-		public decimal Price
-		{
-			get; //{ return price; }
-			private set;// { price = value; }
-		}
-
-		public void setPrice(string price)
-		{
-			Price = decimal.Parse(price);
+			// TODO: Implement addAccessoire(s) to AccessoireDTO (who sets it in database).
 		}
 
 		public override string ToString()
 		{
-			return brand.ToString() + " " + model.ToString();
+			return this.Brand.ToString() + " " + this.Model.ToString();
 		}
 
 

@@ -18,8 +18,7 @@ namespace GeversView
     /// </summary>
     public partial class LeaseWindow : Window
     {
-        List<Car> cars = new List<Car>();
-        Car car = new Car();
+        Company company = new Company();
 
         public LeaseWindow()
         {
@@ -37,15 +36,12 @@ namespace GeversView
         {
             decimal total = 0;
 
-
-
             return total;
         }
 
         private void getCarList()
         {
-            List<Car> cars = car.getAllCars();
-            foreach(Car car in cars)
+            foreach(Car car in company.getAllCars())
             {
                 lbxCars.Items.Add(car);
             }

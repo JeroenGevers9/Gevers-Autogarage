@@ -6,10 +6,25 @@ namespace GeversData
 {
     public class CarDTO
     {
-        public string Model { get; set; }
-        public string Brand{ get; set; }
-        public decimal Price { get; set; }
+		public string Model { get; set; }
+		public string Brand { get; set; }
+		public int ConstructionYear { get; set; }
+		public decimal Price
+		{
+			get; //{ return price; }
+			protected set;// { price = value; }
+		}
 
-        public int ConstructionYear { get; set; }
-    }
+		public void setPrice(decimal purchasePrice, int mileage)
+		{
+			if (mileage == 0 && this.ConstructionYear == 0)
+			{
+				Price = purchasePrice;
+			}
+			else
+			{
+				// Calculate price based on purchasePrice, milage (Kilometerstand) and constructionYear of the car.
+			}
+		}
+	}
 }

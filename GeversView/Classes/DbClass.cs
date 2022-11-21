@@ -12,8 +12,6 @@ namespace GeversView.Classes
     {
         private static MySqlConnection conn;
         private static MySqlCommand command;
-        private static DataTable dt;
-        private static MySqlDataAdapter sda;
         
         public static bool EstablishConnection()
         {
