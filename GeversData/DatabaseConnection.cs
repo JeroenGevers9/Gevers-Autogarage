@@ -37,6 +37,7 @@ namespace GeversData
                 builder.Password = "";
                 builder.Database = "garage-gevers";
                 conn = new MySqlConnection(builder.ToString());
+                
 
 
                 return true;

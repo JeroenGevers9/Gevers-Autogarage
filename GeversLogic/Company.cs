@@ -7,18 +7,30 @@ namespace GeversLogic
 {
     public class Company
     {
+        private UserRepository _userRepository;
+        public Company(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         // getCarDTO
         private List<Car> cars = new List<Car>();
 
         public List<Car> getAllCars()
         {
-            foreach (CarDTO dto in Repository.getCarDTOs())
+            foreach (CarDTO dto in OldRepository.getCarDTOs())
             {
                 Car car = new Car(dto);
                 cars.Add(car);
             }
 
             return cars;
+        }
+
+        public List<User> getUsers()
+        {
+            _userRepository.GetUsers();
+
         }
 
         public string Name { get; private set; }

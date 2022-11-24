@@ -9,19 +9,20 @@ namespace GeversLogic
 {
     public class User
 	{
+
 		public static User Login(string userName, string passWord)
 		{
-			UserDTO userDTO = Repository.Login(userName, passWord);
+			UserDTO userDTO = OldRepository.Login(userName, passWord);
 
 			User user = new User(userDTO.Username, userDTO.EmployeeId);
 
 			return user;
 		}
 
-		public User(string UserName, int employeeId)
+		public User(UserDTO user)
 		{
-			this.Username = UserName;
-			this.EmployeeId = employeeId;
+			this.Username = user.Username;
+			this.EmployeeId = user.EmployeeId;
 		}
 
 		public string Username
