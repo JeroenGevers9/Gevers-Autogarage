@@ -29,9 +29,18 @@ namespace GeversLogic
 
         public List<User> getUsers()
         {
-            _userRepository.GetUsers();
-
+            List<User> users = new List<User>();
+            foreach (UserDTO userDTO in _userRepository.GetUsers())
+            {
+                User user = new User(userDTO);
+                users.Add(user);
+            }
+            return users;
         }
+
+
+
+
 
         public string Name { get; private set; }
 

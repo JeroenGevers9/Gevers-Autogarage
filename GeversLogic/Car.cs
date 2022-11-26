@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public class Car : CarDTO
+    public class Car
     {
 		public Car(CarDTO carDTO)
 		{
@@ -25,7 +25,14 @@ namespace GeversLogic
 			return this.Brand.ToString() + " " + this.Model.ToString();
 		}
 
-
+		private string Model { get; set; }
+		private string Brand { get; set; }
+		private int ConstructionYear { get; set; }
+		protected decimal Price
+		{
+			get; //{ return price; }
+			set;// { price = value; }
+		}
 
 
 
