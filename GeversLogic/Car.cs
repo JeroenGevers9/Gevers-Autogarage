@@ -1,5 +1,4 @@
-﻿using GeversData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,12 +6,12 @@ namespace GeversLogic
 {
     public class Car
     {
-		public Car(CarDTO carDTO)
+		public Car(Car car)
 		{
-			this.Model = carDTO.Model;
-			this.Brand = carDTO.Brand;
-			this.ConstructionYear = carDTO.ConstructionYear;
-			this.Price = carDTO.Price;
+			this.Model = car.Model;
+			this.Brand = car.Brand;
+			this.ConstructionYear = car.ConstructionYear;
+			this.Price = car.Price;
 		}
 
 		public void addAccessoire()

@@ -36,36 +36,8 @@ namespace GeversData
             {
                 conn.Close();
             }
-          
         }
 
-        public List<UserDTO> GetUsers()
-        {
-            MySqlConnection conn = this.GetDatabaseConnection(true);
-            try
-            {
-                List<UserDTO> users = new List<UserDTO>();
-
-                string sql = "SELECT * FROM users";
-
-                MySqlCommand command = new MySqlCommand(sql, conn);
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while(reader.Read())
-                {
-                    UserDTO user = new UserDTO();
-                    user.Username = Convert.ToString(reader["username"]);
-                    user.EmployeeId = Convert.ToInt32(reader["employee_id"]);
-
-                    users.Add(user);
-                }
-                return users;
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-        }
+        
     }
 }

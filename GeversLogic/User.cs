@@ -1,19 +1,29 @@
-﻿using GeversData;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GeversLogic
 {
-    public class User
+	public class User
 	{
-		public User(UserDTO user)
+		public User()
 		{
-			this.Username = user.Username;
-			this.EmployeeId = user.EmployeeId;
+			//this.Username = user.Username;
+			//this.EmployeeId = user.EmployeeId;
 		}
+
+		//public bool CheckExist(string userName, string passWord)
+		//{
+		//	UserRepository userRepo = new UserRepository(_server, _database, _userId, _password);
+		//	if(userRepo.CheckExist(userName, passWord))
+		//	{
+		//		return true;
+		//	}
+		//	return false;
+		//}
 
 		public string Username { get; set; }
 		public string Password { get; private set; }

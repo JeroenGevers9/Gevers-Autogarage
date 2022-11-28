@@ -1,6 +1,9 @@
-﻿using GeversView;
+﻿using GeversData;
+using GeversLogic;
+using GeversView;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +27,7 @@ namespace GeversView
         public MainWindow()
         {
             InitializeComponent();
+            InstantiateCompany();
             buttonVisibility();
         }
 
@@ -50,6 +54,18 @@ namespace GeversView
         private void btnShowOrders_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+
+        private void InstantiateCompany()
+        {
+            string server = ConfigurationManager.AppSettings["server"];
+            string database = ConfigurationManager.AppSettings["database"];
+            string userId = ConfigurationManager.AppSettings["userId"];
+            string password = ConfigurationManager.AppSettings["password"];
+
+            ICompanyStorage companyStorage = new CompanyRepository(server, database, userId, password);
+            Company company = new Company(companyStorage);
         }
 
         private void buttonVisibility()

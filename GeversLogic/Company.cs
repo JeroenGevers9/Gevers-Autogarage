@@ -1,16 +1,15 @@
-﻿using GeversData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GeversLogic
 {
-    public class Company
+    public class Company 
     {
-        private UserRepository _userRepository;
-        public Company(UserRepository userRepository)
+        private ICompanyStorage _companyRepository;
+        public Company(ICompanyStorage companyRepository)
         {
-            _userRepository = userRepository;
+            _companyRepository = companyRepository;
         }
 
         // getCarDTO
@@ -18,25 +17,25 @@ namespace GeversLogic
 
         public List<Car> getAllCars()
         {
-            foreach (CarDTO dto in OldRepository.getCarDTOs())
+            foreach (Car c in _companyRepository.GetCars())
             {
-                Car car = new Car(dto);
+                Car car = new Car(c);
                 cars.Add(car);
             }
 
             return cars;
         }
 
-        public List<User> getUsers()
-        {
-            List<User> users = new List<User>();
-            foreach (UserDTO userDTO in _userRepository.GetUsers())
-            {
-                User user = new User(userDTO);
-                users.Add(user);
-            }
-            return users;
-        }
+        //public List<User> getUsers()
+        //{
+        //    List<User> users = new List<User>();
+        //    foreach (UserDTO userDTO in _userRepository.GetUsers())
+        //    {
+        //        User user = new User();
+        //        users.Add(user);
+        //    }
+        //    return users;
+        //}
 
 
 

@@ -42,7 +42,7 @@ namespace GeversData
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
             {
-                string sql = "UPDATE users (brand, model, price, contruction_year) VALUES (@brand, @model, @price, @contruction_year) WHERE";
+                string sql = "UPDATE users (brand, model, price, contruction_year) VALUES (@brand, @model, @price, @contruction_year) WHERE id = ";
                 MySqlCommand command = new MySqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@brand", brand);
@@ -62,15 +62,30 @@ namespace GeversData
             }
         }
 
-        //public void DeleteLand(string sDeleteLand)
-        //{
-        //    conn.Open();
-        //    MySqlCommand command = conn.CreateCommand();
-        //    command.CommandText = "DELETE FROM land WHERE landnaam = @landnaam";
-        //    command.Parameters.AddWithValue("@landnaam", sDeleteLand);
-        //    command.ExecuteNonQuery();
-        //    conn.Close();
-        //}
+        public bool Delete(int id)
+        {
+
+            MySqlConnection conn = this.GetDatabaseConnection(true);
+            try
+            {
+                string sql = "DELETE FROM land WHERE id = @id";
+
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                command.ExecuteNonQuery();
+
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read()) return true;
+                else return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
 
     }
