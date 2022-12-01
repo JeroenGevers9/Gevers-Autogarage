@@ -4,9 +4,8 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public interface ICompanyStorage 
+    public interface IUserStorage
     {
-        List<Car> GetCars();
-        List<User> GetUsers();
+        bool CheckExist(string userName, string passWord);
     }
 }

@@ -30,6 +30,8 @@ namespace GeversView
             InstantiateCompany();
             buttonVisibility();
         }
+        Company _company;
+
 
         private void btnTradeValue_Click(object sender, RoutedEventArgs e)
         {
@@ -65,7 +67,7 @@ namespace GeversView
             string password = ConfigurationManager.AppSettings["password"];
 
             ICompanyStorage companyStorage = new CompanyRepository(server, database, userId, password);
-            Company company = new Company(companyStorage);
+            _company = new Company(companyStorage);
         }
 
         private void buttonVisibility()
@@ -93,7 +95,7 @@ namespace GeversView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Login loginWindow = new Login();
+            Login loginWindow = new Login(_company);
             loginWindow.Show();
             this.Close();
         }

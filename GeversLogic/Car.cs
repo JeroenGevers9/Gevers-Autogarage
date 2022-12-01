@@ -6,12 +6,12 @@ namespace GeversLogic
 {
     public class Car
     {
-		public Car(Car car)
+		public Car()
 		{
-			this.Model = car.Model;
-			this.Brand = car.Brand;
-			this.ConstructionYear = car.ConstructionYear;
-			this.Price = car.Price;
+			//this.Model = car.Model;
+			//this.Brand = car.Brand;
+			//this.ConstructionYear = car.ConstructionYear;
+			//this.Price = car.Price;
 		}
 
 		public void addAccessoire()
@@ -24,9 +24,9 @@ namespace GeversLogic
 			return this.Brand.ToString() + " " + this.Model.ToString();
 		}
 
-		private string Model { get; set; }
-		private string Brand { get; set; }
-		private int ConstructionYear { get; set; }
+		public string Model { get; set; }
+		public string Brand { get; set; }
+		public int ConstructionYear { get; set; }
 		protected decimal Price
 		{
 			get; //{ return price; }

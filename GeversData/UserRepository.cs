@@ -1,11 +1,12 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GeversLogic;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GeversData
 {
-    public class UserRepository : Repository
+    public class UserRepository : Repository, IUserStorage
     {
         public UserRepository(string server, string database, string userId, string password)
             : base(server, database, userId, password)
@@ -37,7 +38,5 @@ namespace GeversData
                 conn.Close();
             }
         }
-
-        
     }
 }

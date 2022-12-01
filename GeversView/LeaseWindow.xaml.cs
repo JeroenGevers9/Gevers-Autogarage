@@ -18,27 +18,14 @@ namespace GeversView
     /// </summary>
     public partial class LeaseWindow : Window
     {
-      
-
         Company company;
 
         public LeaseWindow()
         {
             InitializeComponent();
-            initializeDatabase();
             getCarList();
         }
 
-        private void initializeDatabase()
-        {
-            string server = ConfigurationManager.AppSettings["server"];
-            string database = ConfigurationManager.AppSettings["database"];
-            string userId = ConfigurationManager.AppSettings["userId"];
-            string password = ConfigurationManager.AppSettings["password"];
-
-            GeversData.UserRepository repository = new GeversData.UserRepository(server, database, userId, password);
-            company = new Company(repository);
-        }
 
         private void onChange(object sender, SelectionChangedEventArgs e)
         {

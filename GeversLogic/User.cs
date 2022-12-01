@@ -15,15 +15,14 @@ namespace GeversLogic
 			//this.EmployeeId = user.EmployeeId;
 		}
 
-		//public bool CheckExist(string userName, string passWord)
-		//{
-		//	UserRepository userRepo = new UserRepository(_server, _database, _userId, _password);
-		//	if(userRepo.CheckExist(userName, passWord))
-		//	{
-		//		return true;
-		//	}
-		//	return false;
-		//}
+		public bool CheckExist(string userName, string passWord)
+		{
+			//if (userStorage.CheckExist(userName, passWord))
+			//{
+			//	return true;
+			//}
+			return false;
+		}
 
 		public string Username { get; set; }
 		public string Password { get; private set; }

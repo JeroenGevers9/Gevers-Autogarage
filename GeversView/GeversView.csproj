@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GeversData\GeversData.csproj" />
     <ProjectReference Include="..\GeversLogic\GeversLogic.csproj" />
   </ItemGroup>
 

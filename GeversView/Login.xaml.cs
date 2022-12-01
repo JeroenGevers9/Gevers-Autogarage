@@ -21,9 +21,11 @@ namespace GeversView
     /// </summary>
     public partial class Login : Window
     {
-        public Login()
+        private Company _company;
+        public Login(Company company)
         {
             InitializeComponent();
+            _company = company;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GeversData
 {
-    public class CompanyRepository : Repository
+    public class CompanyRepository : Repository, ICompanyStorage
     {
         public CompanyRepository(string server, string database, string userId, string password)
           : base(server, database, userId, password)
@@ -14,12 +14,12 @@ namespace GeversData
 
         }
 
-        public List<UserDTO> GetUsers()
+        public List<User> GetUsers()
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
             {
-                List<UserDTO> users = new List<UserDTO>();
+                List<User> users = new List<User>();
 
                 string sql = "SELECT * FROM users";
 
@@ -28,7 +28,7 @@ namespace GeversData
 
                 while (reader.Read())
                 {
-                    UserDTO user = new UserDTO();
+                    User user = new User();
                     user.Username = Convert.ToString(reader["username"]);
                     user.EmployeeId = Convert.ToInt32(reader["employee_id"]);
 
@@ -42,12 +42,12 @@ namespace GeversData
             }
         }
 
-        public List<CarDTO> GetCars()
+        public List<Car> GetCars()
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
             {
-                List<CarDTO> cars = new List<CarDTO>();
+                List<Car> cars = new List<Car>();
 
                 string sql = "SELECT * FROM cars";
 
@@ -56,7 +56,7 @@ namespace GeversData
 
                 while (reader.Read())
                 {
-                    CarDTO car = new CarDTO();
+                    Car car = new Car();
                     car.Model = Convert.ToString(reader["model"]);
                     car.Brand = Convert.ToString(reader["brand"]);
 
