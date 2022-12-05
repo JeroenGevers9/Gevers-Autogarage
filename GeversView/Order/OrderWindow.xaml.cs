@@ -31,31 +31,19 @@ namespace GeversView
             factory = _factory;
             companyStorage = factory.GetCompanyStorage();
             carStorage = factory.GetCarStorage();
-            loadData();
         }
 
-        private void loadData()
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            loadCars();
-            loadAccessoires();
-        }
-        private void loadCars()
-        {
-            List<Car> cars = companyStorage.GetCars();
-            foreach (Car car in cars)
-            {
-                cbCars.Items.Add(car);
-            }
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         }
 
-        private void loadAccessoires()
+        private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
-            List<Accessoire>accessoires = carStorage.GetAccessoires();
-            foreach (Accessoire accessoire in accessoires)
-            {
-                lstOptions.Items.Add(accessoire);
-            }
+            CarWindow carWindow = new CarWindow();
+            carWindow.Show();
         }
-
     }
 }

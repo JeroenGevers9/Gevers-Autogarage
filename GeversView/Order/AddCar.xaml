@@ -1,11 +1,11 @@
-﻿<Window x:Class="GeversView.OrderWindow"
+﻿<Window x:Class="GeversView.Order.AddCar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GeversView"
+        xmlns:local="clr-namespace:GeversView.Order"
         mc:Ignorable="d"
-        Title="OrderWindow" Height="450" Width="800">
+        Title="Voeg auto toe aan een order" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,6 +24,7 @@
             <ListBox x:Name="lstOptions" Margin="0,20,0,0" HorizontalAlignment="Left" Height="120" VerticalAlignment="Top" Width="200" SelectionMode="Multiple"/>
         </StackPanel>
         
-        <Button x:Name="btnSaveOrder" Content="Opslaan" Height="50" Width="120" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,10,10,30" Grid.Column="2" />
+        <Button x:Name="btnAddCarToOrder" Content="Opslaan" Height="50" Width="120" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,10,10,30" Grid.Column="2" Click="btnAddCarToOrder_Click" />
+   
     </Grid>
 </Window>
