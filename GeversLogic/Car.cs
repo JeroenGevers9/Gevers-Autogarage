@@ -6,12 +6,28 @@ namespace GeversLogic
 {
     public class Car
     {
-		public Car()
+
+		public List<Accessoire> accessoires;
+		private ICarStorage _carStorage;
+
+
+		public string Model { get; set; }
+		public string Brand { get; set; }
+		public int ConstructionYear { get; set; }
+		protected decimal Price
 		{
-			//this.Model = car.Model;
-			//this.Brand = car.Brand;
-			//this.ConstructionYear = car.ConstructionYear;
-			//this.Price = car.Price;
+			get; //{ return price; }
+			set;// { price = value; }
+		}
+
+
+		public List<Accessoire> getAllAccessoires()
+		{
+			foreach (Accessoire accessoire in _carStorage.GetAccessoires())
+			{
+				accessoires.Add(accessoire);
+			}
+			return accessoires;
 		}
 
 		public void addAccessoire()
@@ -23,16 +39,6 @@ namespace GeversLogic
 		{
 			return this.Brand.ToString() + " " + this.Model.ToString();
 		}
-
-		public string Model { get; set; }
-		public string Brand { get; set; }
-		public int ConstructionYear { get; set; }
-		protected decimal Price
-		{
-			get; //{ return price; }
-			set;// { price = value; }
-		}
-
 
 
 	}

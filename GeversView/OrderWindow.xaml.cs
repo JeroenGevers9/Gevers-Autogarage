@@ -1,4 +1,5 @@
-﻿using GeversView.Classes;
+﻿using GeversData;
+using GeversLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,27 +21,40 @@ namespace GeversView
     /// </summary>
     public partial class OrderWindow : Window
     {
-        public OrderWindow()
+        RepositoryFactory factory;
+        ICompanyStorage companyStorage;
+        ICarStorage carStorage;
+       
+        public OrderWindow(RepositoryFactory _factory)
         {
             InitializeComponent();
+            factory = _factory;
+            companyStorage = factory.GetCompanyStorage();
+            carStorage = factory.GetCarStorage();
             loadData();
         }
 
         private void loadData()
         {
-            List<Car> cars = DbClass.GetAllCars();
+            loadCars();
+            loadAccessoires();
+        }
+        private void loadCars()
+        {
+            List<Car> cars = companyStorage.GetCars();
             foreach (Car car in cars)
             {
                 cbCars.Items.Add(car);
             }
+        }
 
-
-            Accessoires accessoires;
-            foreach (string accessoire in Enum.GetNames(typeof(Accessoires)))
+        private void loadAccessoires()
+        {
+            List<Accessoire>accessoires = carStorage.GetAccessoires();
+            foreach (Accessoire accessoire in accessoires)
             {
                 lstOptions.Items.Add(accessoire);
             }
-
         }
 
     }

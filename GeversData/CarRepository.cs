@@ -1,16 +1,46 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GeversLogic;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GeversData
 {
-    public class CarRepository : Repository
+    public class CarRepository : Repository, ICarStorage
     {
         public CarRepository(string server, string database, string userId, string password)
                    : base(server, database, userId, password)
         {
 
+        }
+
+
+        public List<Accessoire> GetAccessoires()
+        {
+            MySqlConnection conn = this.GetDatabaseConnection(true);
+            try
+            {
+                List<Accessoire> accessoires = new List<Accessoire>();
+
+                string sql = "SELECT * FROM accessoires";
+
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Accessoire accessoire = new Accessoire();
+                    accessoire.Name = Convert.ToString(reader["name"]);
+                    accessoire.Price = Convert.ToDecimal(reader["price"]);
+
+                    accessoires.Add(accessoire);
+                }
+                return accessoires;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public bool Create(string brand, string model, decimal price, string constructionYear)
@@ -32,7 +62,8 @@ namespace GeversData
                 if (reader.Read()) return true;
                 else return false;
             }
-            finally {
+            finally
+            {
                 conn.Close();
             }
         }

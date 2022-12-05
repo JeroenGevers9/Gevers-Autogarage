@@ -27,10 +27,11 @@ namespace GeversView
         public MainWindow()
         {
             InitializeComponent();
-            InstantiateCompany();
+            InstantiateFactory();
             buttonVisibility();
         }
         Company _company;
+        RepositoryFactory factory;
 
 
         private void btnTradeValue_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace GeversView
         }
         private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow ow = new OrderWindow();
+            OrderWindow ow = new OrderWindow(factory);
             ow.Show();
             this.Close();
         }
@@ -59,14 +60,15 @@ namespace GeversView
         }
 
 
-        private void InstantiateCompany()
+        private void InstantiateFactory()
         {
             string server = ConfigurationManager.AppSettings["server"];
             string database = ConfigurationManager.AppSettings["database"];
             string userId = ConfigurationManager.AppSettings["userId"];
             string password = ConfigurationManager.AppSettings["password"];
+            factory = new RepositoryFactory(server, database, userId, password);
 
-            ICompanyStorage companyStorage = new CompanyRepository(server, database, userId, password);
+            ICompanyStorage companyStorage = factory.GetCompanyStorage();
             _company = new Company(companyStorage);
         }
 
