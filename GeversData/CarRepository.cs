@@ -22,7 +22,8 @@ namespace GeversData
             {
                 List<Accessoire> accessoires = new List<Accessoire>();
 
-                string sql = "SELECT * FROM accessoires WHERE";
+                // Maybe check on selected car? Or choose options to add to car (which is added on an order)
+                string sql = "SELECT * FROM accessoires";
 
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
