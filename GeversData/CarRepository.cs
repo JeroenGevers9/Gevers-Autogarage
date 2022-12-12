@@ -22,7 +22,7 @@ namespace GeversData
             {
                 List<Accessoire> accessoires = new List<Accessoire>();
 
-                string sql = "SELECT * FROM accessoires";
+                string sql = "SELECT * FROM accessoires WHERE";
 
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -43,24 +43,22 @@ namespace GeversData
             }
         }
 
-        public bool Create(string brand, string model, decimal price, string constructionYear)
+        public bool Create(Car car)
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
             {
-                string sql = "INSERT INTO users (brand, model, price, contruction_year) VALUES (@brand, @model, @price, @contruction_year)";
+                string sql = "INSERT INTO cars (company_id, brand, model, price, construction_year) VALUES (@company_id, @brand, @model, @price, @construction_year)";
                 MySqlCommand command = new MySqlCommand(sql, conn);
 
-                command.Parameters.AddWithValue("@brand", brand);
-                command.Parameters.AddWithValue("@model", model);
-                command.Parameters.AddWithValue("@price", price);
-                command.Parameters.AddWithValue("@construction_year", constructionYear);
-                command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("@company_id", 1);
+                command.Parameters.AddWithValue("@brand", car.Brand);
+                command.Parameters.AddWithValue("@model", car.Model);
+                command.Parameters.AddWithValue("@price", car.Price);
+                command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
 
-                MySqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read()) return true;
-                else return false;
+                command.ExecuteReader();
+                return true;
             }
             finally
             {
@@ -86,7 +84,7 @@ namespace GeversData
                 command.ExecuteNonQuery();
 
                 MySqlDataReader reader = command.ExecuteReader();
-                Car car = new Car();
+                Car car = new Car(this);
 
                 if(reader.Read())
                 {
@@ -103,7 +101,7 @@ namespace GeversData
 
         }
 
-        public bool Update(string brand, string model, decimal price, string constructionYear)
+        public bool Update(Car car)
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
@@ -111,10 +109,10 @@ namespace GeversData
                 string sql = "UPDATE users (brand, model, price, contruction_year) VALUES (@brand, @model, @price, @contruction_year) WHERE id = ";
                 MySqlCommand command = new MySqlCommand(sql, conn);
 
-                command.Parameters.AddWithValue("@brand", brand);
-                command.Parameters.AddWithValue("@model", model);
-                command.Parameters.AddWithValue("@price", price);
-                command.Parameters.AddWithValue("@construction_year", constructionYear);
+                command.Parameters.AddWithValue("@brand", car.Brand);
+                command.Parameters.AddWithValue("@model", car.Model);
+                command.Parameters.AddWithValue("@price", car.Price);
+                command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
                 command.ExecuteNonQuery();
 
                 MySqlDataReader reader = command.ExecuteReader();
@@ -128,7 +126,7 @@ namespace GeversData
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(Car car)
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
@@ -138,7 +136,7 @@ namespace GeversData
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 command.ExecuteNonQuery();
 
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@id", car.Id);
                 command.ExecuteNonQuery();
 
                 MySqlDataReader reader = command.ExecuteReader();

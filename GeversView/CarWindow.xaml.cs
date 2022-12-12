@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeversLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,21 +20,28 @@ namespace GeversView
     /// </summary>
     public partial class CarWindow : Window
     {
-        public CarWindow()
+        ICarStorage carStorage;
+        public CarWindow(ICarStorage _carStorage)
         {
             InitializeComponent();
+            carStorage = _carStorage;
         }
 
         private void btnSaveCar_Click(object sender, RoutedEventArgs e)
         {
-            Classes.Car car = new Classes.Car();
+            string Brand = tbxBrand.Text;
+            string Model = tbxModel.Text;
+            decimal Price = decimal.Parse(tbxPrice.Text);
+            int ConstructionYear = int.Parse(tbxConstructionYear.Text);
 
-            car.Brand = tbxBrand.Text;
-            car.Model = tbxModel.Text;
-            car.setPrice(tbxPrice.Text);
-            car.ConstructionYear = int.Parse(tbxConstructionYear.Text);
+            Car car = new Car(carStorage);
+            car.Brand = Brand;
+            car.Model = Model;
+            car.Price = Price;
+            car.ConstructionYear = ConstructionYear;
+            
 
-            if(Classes.DbClass.InsertCar(car))
+            if (carStorage.Create(car))
             {
                 MessageBox.Show("Auto successvol toegevoegd");
                 MainWindow mw = new MainWindow();

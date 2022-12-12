@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GeversLogic;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +16,7 @@ namespace GeversData
 
         public static bool CheckExist(string userName, string passWord)
         {
-            UserDTO userDTO = new UserDTO();
+            User userDTO = new User();
 
             if (!DatabaseConnection.EstablishConnection()) return false;
             conn = DatabaseConnection.getConnection();
@@ -30,7 +31,7 @@ namespace GeversData
 
             while (reader.Read())
             {
-                userDTO.Id = Convert.ToInt32(reader["id"]);
+                //userDTO.id = Convert.ToInt32(reader["id"]);
                 userDTO.Username = Convert.ToString(reader["username"]);
                 userDTO.EmployeeId = Convert.ToInt32(reader["employee_id"]);
             }
@@ -43,37 +44,37 @@ namespace GeversData
         }
 
 
-        public static List<CarDTO> getCarDTOs()
-        {
-            List<CarDTO> carDTOs = new List<CarDTO>();
+        //public static List<Car> getCarDTOs()
+        //{
+        //    List<Car> carDTOs = new List<Car>();
 
-            if (!DatabaseConnection.EstablishConnection()) return carDTOs;
-            conn = DatabaseConnection.getConnection();
+        //    if (!DatabaseConnection.EstablishConnection()) return carDTOs;
+        //    conn = DatabaseConnection.getConnection();
 
-            try
-            {
-                conn.Open();
-                string sql = "SELECT * FROM cars;";
+        //    try
+        //    {
+        //        conn.Open();
+        //        string sql = "SELECT * FROM cars;";
 
-                command = new MySqlCommand(sql, conn);
+        //        command = new MySqlCommand(sql, conn);
 
-                MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    CarDTO car = new CarDTO();
-                    car.Model = Convert.ToString(reader["model"]);
-                    car.Brand = Convert.ToString(reader["brand"]);
-                    car.ConstructionYear = Convert.ToInt32(reader["construction_year"]);
-                    carDTOs.Add(car);
-                }
-                conn.Close();
+        //        MySqlDataReader reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            Car car = new Car();
+        //            car.Model = Convert.ToString(reader["model"]);
+        //            car.Brand = Convert.ToString(reader["brand"]);
+        //            car.ConstructionYear = Convert.ToInt32(reader["construction_year"]);
+        //            carDTOs.Add(car);
+        //        }
+        //        conn.Close();
 
-                return carDTOs;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return carDTOs;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
     }
 }

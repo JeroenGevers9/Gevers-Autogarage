@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeversData", "GeversData\Ge
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeversLogic", "GeversLogic\GeversLogic.csproj", "{472369BA-D2D0-4227-A315-A29588244E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeversView", "GeversView\GeversView.csproj", "{B2438720-07F6-49B7-9E69-ACB8AF2B13C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeversView", "GeversView\GeversView.csproj", "{B2438720-07F6-49B7-9E69-ACB8AF2B13C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

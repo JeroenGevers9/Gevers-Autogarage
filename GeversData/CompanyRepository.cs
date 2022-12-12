@@ -8,10 +8,11 @@ namespace GeversData
 {
     public class CompanyRepository : Repository, ICompanyStorage
     {
-        public CompanyRepository(string server, string database, string userId, string password)
+        ICarStorage carStorage;
+        public CompanyRepository(string server, string database, string userId, string password, ICarStorage _carStorage)
           : base(server, database, userId, password)
         {
-
+            carStorage = _carStorage;
         }
 
         public List<User> GetUsers()
@@ -56,7 +57,7 @@ namespace GeversData
 
                 while (reader.Read())
                 {
-                    Car car = new Car();
+                    Car car = new Car(carStorage);
                     car.Model = Convert.ToString(reader["model"]);
                     car.Brand = Convert.ToString(reader["brand"]);
 

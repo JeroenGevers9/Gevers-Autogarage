@@ -11,17 +11,14 @@ namespace GeversView.Order
     /// </summary>
     public partial class AddCar : Window
     {
-
-        RepositoryFactory factory;
         ICompanyStorage companyStorage;
         ICarStorage carStorage;
 
-        public AddCar(RepositoryFactory _factory)
+        public AddCar(ICompanyStorage _companyStorge, ICarStorage _carStorage)
         {
             InitializeComponent();
-            factory = _factory;
-            companyStorage = factory.GetCompanyStorage();
-            carStorage = factory.GetCarStorage();
+            companyStorage = _companyStorge;
+            carStorage = _carStorage;
             loadData();
         }
 
@@ -50,7 +47,7 @@ namespace GeversView.Order
 
         private void btnAddCarToOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow orderWindow = new OrderWindow(factory);
+            OrderWindow orderWindow = new OrderWindow(companyStorage, carStorage);
             orderWindow.Show();
         }
     }

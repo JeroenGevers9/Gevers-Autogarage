@@ -28,9 +28,10 @@ namespace GeversView
         {
             InitializeComponent();
             InstantiateFactory();
-            buttonVisibility();
+            //buttonVisibility();
         }
         Company _company;
+        Car _car;
         RepositoryFactory factory;
 
 
@@ -43,13 +44,13 @@ namespace GeversView
 
         private void btnCreateCar_Click(object sender, RoutedEventArgs e)
         {
-            CarWindow cw = new CarWindow();
+            CarWindow cw = new CarWindow(factory.GetCarStorage()) ;
             cw.Show();
             this.Close();
         }
         private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow ow = new OrderWindow(factory);
+            OrderWindow ow = new OrderWindow(factory.GetCompanyStorage(), factory.GetCarStorage());
             ow.Show();
             this.Close();
         }
@@ -68,32 +69,44 @@ namespace GeversView
             string password = ConfigurationManager.AppSettings["password"];
             factory = new RepositoryFactory(server, database, userId, password);
 
+            InstantiateCompanyRepo();
+            InstantiateCarRepo();
+        }
+
+        private void InstantiateCompanyRepo()
+        {
             ICompanyStorage companyStorage = factory.GetCompanyStorage();
             _company = new Company(companyStorage);
         }
 
-        private void buttonVisibility()
+        private void InstantiateCarRepo()
         {
-            if (Classes.Session.getIsEmployee())
-            {
-                btnLogin.Visibility = Visibility.Hidden;
-                btnShowOrders.Visibility = Visibility.Visible;
-                btnCreateCar.Visibility = Visibility.Visible;
-                lblUsername.Content = Classes.Session.getUserName();
-
-            }
-            else if(Classes.Session.getLoggedIn())
-            {
-                btnLogin.Visibility = Visibility.Hidden;
-                btnShowOrders.Visibility = Visibility.Hidden;
-                btnCreateCar.Visibility = Visibility.Hidden;
-                lblUsername.Content = Classes.Session.getUserName();
-            }
-            else
-            {
-                btnShowOrders.Visibility = Visibility.Hidden;
-            }
+            ICarStorage carStorage = factory.GetCarStorage();
+            _car = new Car(carStorage);
         }
+
+        //private void buttonVisibility()
+        //{
+        //    if (Classes.Session.getIsEmployee())
+        //    {
+        //        btnLogin.Visibility = Visibility.Hidden;
+        //        btnShowOrders.Visibility = Visibility.Visible;
+        //        btnCreateCar.Visibility = Visibility.Visible;
+        //        lblUsername.Content = Classes.Session.getUserName();
+
+        //    }
+        //    else if(Classes.Session.getLoggedIn())
+        //    {
+        //        btnLogin.Visibility = Visibility.Hidden;
+        //        btnShowOrders.Visibility = Visibility.Hidden;
+        //        btnCreateCar.Visibility = Visibility.Hidden;
+        //        lblUsername.Content = Classes.Session.getUserName();
+        //    }
+        //    else
+        //    {
+        //        btnShowOrders.Visibility = Visibility.Hidden;
+        //    }
+        //}
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {

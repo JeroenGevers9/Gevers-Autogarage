@@ -8,21 +8,23 @@ namespace GeversLogic
     {
 
 		public List<Accessoire> accessoires;
+		public ICarStorage carStorage;
 
-		private ICarStorage _carStorage;
+		public Car(ICarStorage _carStorage)
+		{
+			this.carStorage = _carStorage;
+		}
+
+		public int Id{ get; }
 		public string Model { get; set; }
 		public string Brand { get; set; }
 		public int ConstructionYear { get; set; }
-		protected decimal Price
-		{
-			get; //{ return price; }
-			set;// { price = value; }
-		}
+		public decimal Price { get; set; }
 
 
 		public List<Accessoire> getAllAccessoires()
 		{
-			foreach (Accessoire accessoire in _carStorage.GetAccessoires())
+			foreach (Accessoire accessoire in carStorage.GetAccessoires())
 			{
 				accessoires.Add(accessoire);
 			}
