@@ -24,12 +24,14 @@ namespace GeversView
         RepositoryFactory factory;
         ICompanyStorage companyStorage;
         ICarStorage carStorage;
-       
-        public OrderWindow(ICompanyStorage _companyStorage, ICarStorage _carStorage)
+        GeversLogic.Order order;
+        public OrderWindow(RepositoryFactory _factory, GeversLogic.Order _order)
         {
             InitializeComponent();
-            companyStorage = _companyStorage;
-            carStorage = _carStorage;
+            factory = _factory;
+            order = _order;
+            companyStorage = factory.GetCompanyStorage();
+            carStorage = factory.GetCarStorage();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace GeversView
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
-            Order.AddCar carWindow = new Order.AddCar(companyStorage, carStorage);
+            Order.AddCar carWindow = new Order.AddCar(factory, order);
             carWindow.Show();
         }
     }

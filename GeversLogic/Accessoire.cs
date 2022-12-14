@@ -14,5 +14,10 @@ namespace GeversLogic
         {
             this.CarId = carId;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

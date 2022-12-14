@@ -33,5 +33,10 @@ namespace GeversData
         {
             return new CompanyRepository(Server, Database, UserId, Password, this.GetCarStorage());
         }
+
+        public IOrderStorage GetOrderStorage()
+        {
+            return new OrderRepository(Server, Database, UserId, Password, this.GetCarStorage());
+        }
     }
 }

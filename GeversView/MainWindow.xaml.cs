@@ -31,9 +31,14 @@ namespace GeversView
             //buttonVisibility();
         }
         Company _company;
-        Car _car;
+        Car car;
+        GeversLogic.Order order;
+
         RepositoryFactory factory;
 
+        ICarStorage carStorage;
+        IOrderStorage orderStorage;
+        ICompanyStorage companyStorage;
 
         private void btnTradeValue_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +55,7 @@ namespace GeversView
         }
         private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow ow = new OrderWindow(factory.GetCompanyStorage(), factory.GetCarStorage());
+            OrderWindow ow = new OrderWindow(factory, order);
             ow.Show();
             this.Close();
         }
@@ -71,18 +76,24 @@ namespace GeversView
 
             InstantiateCompanyRepo();
             InstantiateCarRepo();
+            InstantiateOrderRepo();
         }
 
         private void InstantiateCompanyRepo()
         {
-            ICompanyStorage companyStorage = factory.GetCompanyStorage();
+            companyStorage = factory.GetCompanyStorage();
             _company = new Company(companyStorage);
         }
 
         private void InstantiateCarRepo()
         {
-            ICarStorage carStorage = factory.GetCarStorage();
-            _car = new Car(carStorage);
+            carStorage = factory.GetCarStorage();
+            car = new Car(carStorage);
+        }
+        private void InstantiateOrderRepo()
+        {
+            orderStorage = factory.GetOrderStorage();
+            order = new GeversLogic.Order(orderStorage, carStorage);
         }
 
         //private void buttonVisibility()

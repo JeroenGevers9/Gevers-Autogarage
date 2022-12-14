@@ -31,9 +31,9 @@ namespace GeversLogic
 			return accessoires;
 		}
 
-		public void addAccessoire()
+		public void addAccessoire(List<Accessoire> accessoires)
 		{
-			// TODO: Implement addAccessoire(s) to AccessoireDTO (who sets it in database).
+			this.accessoires = accessoires;
 		}
 
 		public override string ToString()
