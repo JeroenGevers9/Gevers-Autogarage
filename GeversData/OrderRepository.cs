@@ -94,5 +94,28 @@ namespace GeversData
                 conn.Close();
             }
         }
+
+        public bool SaveOrder(Order order)
+        {
+            MySqlConnection conn = this.GetDatabaseConnection(true);
+            try
+            {
+                string sql = "INSERT INTO orders (company_id, brand, model, price, construction_year) VALUES (@company_id, @brand, @model, @price, @construction_year)";
+                MySqlCommand command = new MySqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@company_id", 1);
+                command.Parameters.AddWithValue("@brand", order.Cars);
+                command.Parameters.AddWithValue("@model", order.TotalPrice);
+                command.Parameters.AddWithValue("@price", order.User);
+                //command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
+
+                command.ExecuteReader();
+                return true;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

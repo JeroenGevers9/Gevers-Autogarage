@@ -4,15 +4,39 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public class Order 
+    public class Order
     {
         IOrderStorage orderStorage;
         ICarStorage carStorage;
 
         public List<Car> Cars { get; set; }
-        public User user { get; set; }
-        public Company company { get; set; }
+        public User User { get; set; }
+        public Company Company { get; set; }
+        public decimal TotalPrice { get; private set; }
 
+        public decimal calculateTotal()
+        {
+            decimal total = 0;
+            if(this.Cars.Count > 0)
+            {
+                foreach(Car car in this.Cars)
+                {
+                    total = total + car.Price;
+                    total = total + car.getAccessoireTotal();
+                }
+            }
+
+            return total;
+        }
+
+        public bool Save()
+        {
+            if(this != null && this.Cars.Count > 0) {
+                return orderStorage.SaveOrder(this);
+            }
+            return false;
+        }
+        
         public Order(IOrderStorage _orderStorage, ICarStorage _carStorage)
         {
             orderStorage = _orderStorage;
@@ -28,7 +52,6 @@ namespace GeversLogic
             }
             return Cars;
         }
-
 
         public Order addCar(Car car)
         {

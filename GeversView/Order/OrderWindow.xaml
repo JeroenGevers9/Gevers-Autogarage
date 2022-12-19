@@ -18,10 +18,9 @@
             <Button x:Name="btnAddCar" Content="Voeg auto toe" Height="50" Width="120" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,10,10,30" Grid.Column="2" Click="btnAddCar_Click" />
         </StackPanel>
 
-        <StackPanel x:Name="stackCars" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
-          
+        <StackPanel x:Name="stackCars" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,10,0" Grid.Row="0" Grid.Column="1">
         </StackPanel>
 
-        <Button x:Name="btnSaveOrder" Content="Opslaan" Height="50" Width="120" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,10,10,30" Grid.Column="2" />
+        <Button x:Name="btnSaveOrder" Content="Opslaan" Height="50" Width="120" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,10,10,30" Grid.Column="2" Click="btnSaveOrder_Click" />
     </Grid>
 </Window>

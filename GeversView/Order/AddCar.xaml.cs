@@ -58,13 +58,6 @@ namespace GeversView.Order
             }
         }
 
-        private bool getListDiff(List<Car> carsFromDatabase, List<Car> carsFromOrder)
-        {
-            var firstNotSecond = carsFromOrder.Except(carsFromDatabase).ToList();
-            var secondNotFirst = carsFromDatabase.Except(carsFromOrder).ToList();
-
-            return !firstNotSecond.Any() && !secondNotFirst.Any();
-        }
 
         private void loadAccessoires()
         {
