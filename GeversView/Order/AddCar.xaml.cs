@@ -83,7 +83,7 @@ namespace GeversView.Order
                 if (lstOptions.SelectedItems.Count > 0 )
                 {
                     IList items = lstOptions.SelectedItems;
-                    car.addAccessoire(items.Cast<Accessoire>().ToList());
+                    car.addAccessoires(items.Cast<Accessoire>().ToList());
                 }
                 order.addCar(car);
                 

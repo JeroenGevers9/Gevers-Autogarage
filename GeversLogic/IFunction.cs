@@ -4,8 +4,11 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public class Customer
+    enum IFunction
     {
-		public string Username { get; set; }
-	}
+        Admin,
+        Administration,
+        Employee,
+        Intern
+    }
 }

@@ -9,35 +9,31 @@ namespace GeversLogic
 {
 	public class User
 	{
-		public User()
+		IUserStorage _UserStorage;
+		public string Username { get; set; }
+		public string Password { get; private set; }
+		public Employee Employee { get; set; }
+		public User(IUserStorage _userStorage)
 		{
-			//this.Username = user.Username;
-			//this.EmployeeId = user.EmployeeId;
+			_UserStorage = _userStorage;
 		}
 
 		public bool CheckExist(string userName, string passWord)
 		{
-			//if (userStorage.CheckExist(userName, passWord))
-			//{
-			//	return true;
-			//}
-			return false;
-		}
-
-		public string Username { get; set; }
-		public string Password { get; private set; }
-		public int EmployeeId { get; set; }
-
-		public bool isEmployee()
-		{
-			if (this.EmployeeId != 0)
+			if(_UserStorage.CheckExist(userName, passWord))
 			{
 				return true;
 			}
-			else
+			return false;
+		}
+
+		public bool isEmployee()
+		{
+			if (this.Employee != null)
 			{
-				return false;
+				return true;
 			}
+			return false;
 		}
 	}
 }

@@ -9,10 +9,12 @@ namespace GeversData
     public class CompanyRepository : Repository, ICompanyStorage
     {
         ICarStorage carStorage;
-        public CompanyRepository(string server, string database, string userId, string password, ICarStorage _carStorage)
+        IUserStorage userStorage;
+        public CompanyRepository(string server, string database, string userId, string password, ICarStorage _carStorage, IUserStorage _userStorage)
           : base(server, database, userId, password)
         {
             carStorage = _carStorage;
+            userStorage = _userStorage;
         }
 
         public List<User> GetUsers()
@@ -29,9 +31,9 @@ namespace GeversData
 
                 while (reader.Read())
                 {
-                    User user = new User();
+                    User user = new User(userStorage);
                     user.Username = Convert.ToString(reader["username"]);
-                    user.EmployeeId = Convert.ToInt32(reader["employee_id"]);
+                    //user.Employee = Convert.ToInt32(reader["employee_id"]);
 
                     users.Add(user);
                 }

@@ -82,7 +82,7 @@ namespace GeversView
 
         private void btnSaveOrder_Click(object sender, RoutedEventArgs e)
         {
-            decimal total = order.calculateTotal();
+            decimal total = order.getTotalPrice();
 
             if (order.Save())
             {

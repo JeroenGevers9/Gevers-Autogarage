@@ -6,37 +6,35 @@ namespace GeversLogic
 {
     public class Company 
     {
-        private ICompanyStorage _companyRepository;
-        private List<Car> cars = new List<Car>();
-        private List<User> users = new List<User>();
+        private ICompanyStorage _CompanyRepository;
+        private List<Car> Cars = new List<Car>();
+        private List<User> Users = new List<User>();
+        private string Name;
 
 
         public Company(ICompanyStorage companyRepository)
         {
-            _companyRepository = companyRepository;
+            _CompanyRepository = companyRepository;
         }
 
 
         public List<Car> getAllCars()
         {
-            foreach (Car car in _companyRepository.GetCars())
+            foreach (Car car in _CompanyRepository.GetCars())
             {
-                cars.Add(car);
+                Cars.Add(car);
             }
-            return cars;
+            return Cars;
         }
 
         public List<User> getUsers()
         {
-            foreach (User user in _companyRepository.GetUsers())
+            foreach (User user in _CompanyRepository.GetUsers())
             {
-                users.Add(user);
+                Users.Add(user);
             }
-            return users;
+            return Users;
         }
-                     
-
-        public string Name { get; private set; }
 
         public void setName(string companyName)
         {

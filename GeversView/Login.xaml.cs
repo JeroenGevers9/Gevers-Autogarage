@@ -21,15 +21,17 @@ namespace GeversView
     public partial class Login : Window
     {
         private Company _company;
-        public Login(Company company)
+        private IUserStorage userStorage;
+        public Login(Company company, IUserStorage _userStorage)
         {
             InitializeComponent();
             _company = company;
+            userStorage = _userStorage;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
+            User user = new User(userStorage);
             
             if (user.CheckExist(tbxUsername.Text, pwbPassword.Password))
             {

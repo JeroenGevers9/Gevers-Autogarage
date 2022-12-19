@@ -14,7 +14,7 @@ namespace GeversLogic
         public Company Company { get; set; }
         public decimal TotalPrice { get; private set; }
 
-        public decimal calculateTotal()
+        public decimal getTotalPrice()
         {
             decimal total = 0;
             if(this.Cars.Count > 0)

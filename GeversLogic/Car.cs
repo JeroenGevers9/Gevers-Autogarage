@@ -6,21 +6,23 @@ namespace GeversLogic
 {
     public class Car
     {
-
 		public List<Accessoire> accessoires;
-		public ICarStorage carStorage;
+		private ICarStorage carStorage;
+		public int Id { get; }
+		public string Model { get; set; }
+		public string Brand { get; set; }
+		public int ConstructionYear { get; set; }
+		public decimal Price { get; set; }
 
 		public Car(ICarStorage _carStorage)
 		{
 			this.carStorage = _carStorage;
 		}
 
-		public int Id{ get; }
-		public string Model { get; set; }
-		public string Brand { get; set; }
-		public int ConstructionYear { get; set; }
-		public decimal Price { get; set; }
-
+		public Car getCar()
+		{
+			return this;
+		}
 
 		public decimal getAccessoireTotal()
 		{
@@ -44,7 +46,7 @@ namespace GeversLogic
 			return accessoires;
 		}
 
-		public void addAccessoire(List<Accessoire> accessoires)
+		public void addAccessoires(List<Accessoire> accessoires)
 		{
 			this.accessoires = accessoires;
 		}

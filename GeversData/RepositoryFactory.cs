@@ -31,12 +31,12 @@ namespace GeversData
         }
         public ICompanyStorage GetCompanyStorage()
         {
-            return new CompanyRepository(Server, Database, UserId, Password, this.GetCarStorage());
+            return new CompanyRepository(Server, Database, UserId, Password, this.GetCarStorage(), this.GetUserStorage());
         }
 
         public IOrderStorage GetOrderStorage()
         {
-            return new OrderRepository(Server, Database, UserId, Password, this.GetCarStorage());
+            return new OrderRepository(Server, Database, UserId, Password, this.GetCarStorage(), this.GetUserStorage());
         }
     }
 }

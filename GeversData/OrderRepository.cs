@@ -9,10 +9,12 @@ namespace GeversData
     class OrderRepository : Repository, IOrderStorage
     {
         ICarStorage carStorage;
-        public OrderRepository(string server, string database, string userId, string password, ICarStorage _carStorage)
+        IUserStorage userStorage;
+        public OrderRepository(string server, string database, string userId, string password, ICarStorage _carStorage, IUserStorage _userStorage)
           : base(server, database, userId, password)
         {
             carStorage = _carStorage;
+            userStorage = _userStorage;
         }
 
         public bool AddCar(Car car)
@@ -53,9 +55,9 @@ namespace GeversData
 
                 while (reader.Read())
                 {
-                    User user = new User();
+                    User user = new User(userStorage);
                     user.Username = Convert.ToString(reader["username"]);
-                    user.EmployeeId = Convert.ToInt32(reader["employee_id"]);
+                    //user.Employee = Convert.ToInt32(reader["employee_id"]);
 
                     users.Add(user);
                 }
@@ -106,7 +108,7 @@ namespace GeversData
                 command.Parameters.AddWithValue("@company_id", 1);
                 command.Parameters.AddWithValue("@brand", order.Cars);
                 command.Parameters.AddWithValue("@model", order.TotalPrice);
-                command.Parameters.AddWithValue("@price", order.User);
+                command.Parameters.AddWithValue("@price", order.getTotalPrice());
                 //command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
 
                 command.ExecuteReader();
