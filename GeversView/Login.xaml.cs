@@ -35,8 +35,9 @@ namespace GeversView
             
             if (user.CheckExist(tbxUsername.Text, pwbPassword.Password))
             {
+                user.Username = tbxUsername.Text;
                 MessageBox.Show("Welkom " + tbxUsername.Text);
-                var mw = new MainWindow();
+                MainWindow mw = new MainWindow();
                 mw.Show();
                 this.Close();
             }

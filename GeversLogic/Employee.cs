@@ -6,7 +6,6 @@ namespace GeversLogic
 {
     public class Employee
     {
-        private int Id;
         private string EmployeeNumber;
         private IFunction Function;
 

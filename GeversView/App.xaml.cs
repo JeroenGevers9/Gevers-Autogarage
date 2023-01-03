@@ -17,8 +17,6 @@ namespace GeversView
         void InitializeApp(object sender, StartupEventArgs e)
         {
             // Do something before start
-            MainWindow mw = new MainWindow();
-            mw.Show();
         }
     }
 }

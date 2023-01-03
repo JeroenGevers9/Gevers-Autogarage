@@ -32,6 +32,7 @@ namespace GeversData
                 while (reader.Read())
                 {
                     User user = new User(userStorage);
+                    user.setId(Convert.ToInt32(reader["id"]));
                     user.Username = Convert.ToString(reader["username"]);
                     //user.Employee = Convert.ToInt32(reader["employee_id"]);
 

@@ -8,6 +8,8 @@ namespace GeversData
 {
     public class UserRepository : Repository, IUserStorage
     {
+        User _user;
+
         public UserRepository(string server, string database, string userId, string password)
             : base(server, database, userId, password)
         {
@@ -24,6 +26,7 @@ namespace GeversData
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
 
+               
                 if (reader.Read())
                 {
                     return true;

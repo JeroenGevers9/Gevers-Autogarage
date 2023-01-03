@@ -91,8 +91,10 @@ namespace GeversView
                 mw.Show();
                 this.Close();
             }
-
-            MessageBox.Show("Something went wrong, the order could not be saved");
+            else
+            {
+                MessageBox.Show("Something went wrong, the order could not be saved");
+            }
         }
     }
 }

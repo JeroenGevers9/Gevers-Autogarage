@@ -10,6 +10,7 @@ namespace GeversLogic
 	public class User
 	{
 		IUserStorage _UserStorage;
+		public int Id { get; set; }
 		public string Username { get; set; }
 		public string Password { get; private set; }
 		public Employee Employee { get; set; }
@@ -34,6 +35,11 @@ namespace GeversLogic
 				return true;
 			}
 			return false;
+		}
+
+		public void setId(int id)
+		{
+			this.Id = id;
 		}
 	}
 }

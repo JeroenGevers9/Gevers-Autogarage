@@ -21,6 +21,7 @@ namespace GeversLogic
 
 		public Car getCar()
 		{
+			// get & set all variables as private and set them in this function (and setCar function).
 			return this;
 		}
 
