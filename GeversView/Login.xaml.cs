@@ -32,12 +32,12 @@ namespace GeversView
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             User user = new User(userStorage);
-            
-            if (user.CheckExist(tbxUsername.Text, pwbPassword.Password))
+            User loggedInUser = user.CheckExist(tbxUsername.Text, pwbPassword.Password);
+            if (loggedInUser != null)
             {
                 user.Username = tbxUsername.Text;
                 MessageBox.Show("Welkom " + tbxUsername.Text);
-                MainWindow mw = new MainWindow();
+                MainWindow mw = new MainWindow(loggedInUser);
                 mw.Show();
                 this.Close();
             }

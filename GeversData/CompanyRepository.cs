@@ -53,14 +53,14 @@ namespace GeversData
             {
                 List<Car> cars = new List<Car>();
 
-                string sql = "SELECT * FROM cars";
-
+                string sql = "SELECT * FROM cars WHERE (cars.id NOT IN(SELECT car_id FROM car_order))";
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Car car = new Car(carStorage);
+                    car.Id = Convert.ToInt32(reader["id"]);
                     car.Model = Convert.ToString(reader["model"]);
                     car.Brand = Convert.ToString(reader["brand"]);
 

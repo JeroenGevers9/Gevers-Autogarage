@@ -6,6 +6,6 @@ namespace GeversLogic
 {
     public interface IUserStorage
     {
-        bool CheckExist(string userName, string passWord);
+        User CheckExist(string userName, string passWord);
     }
 }

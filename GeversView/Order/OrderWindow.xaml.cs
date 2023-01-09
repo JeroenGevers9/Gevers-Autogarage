@@ -82,12 +82,10 @@ namespace GeversView
 
         private void btnSaveOrder_Click(object sender, RoutedEventArgs e)
         {
-            decimal total = order.getTotalPrice();
-
             if (order.Save())
             {
                 MessageBox.Show("Order saved");
-                MainWindow mw = new MainWindow();
+                MainWindow mw = new MainWindow(order.User);
                 mw.Show();
                 this.Close();
             }

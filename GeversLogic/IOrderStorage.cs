@@ -6,7 +6,6 @@ namespace GeversLogic
     {
         List<Car> GetCars();
         List<User> GetUsers();
-        bool AddCar(Car car);
         bool SaveOrder(Order order);
     }
 }

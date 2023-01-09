@@ -26,6 +26,20 @@ namespace GeversLogic
                 }
             }
 
+            if (this.User.Employee != null)
+            {
+               total = applyEmployeeDiscount(total);
+            }
+
+            return total;
+        }
+
+        private decimal applyEmployeeDiscount(decimal total)
+        {
+            int discountAmount = this.User.Employee.getDiscountAmount();
+
+            total = total % discountAmount;
+
             return total;
         }
 

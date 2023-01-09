@@ -7,25 +7,25 @@ namespace GeversLogic
     public class Employee
     {
         private string EmployeeNumber;
-        private IFunction Function;
+        public int Function { get; set; }
 
         public int getDiscountAmount()
         {
-            int discountAmount = 0;
+            int discountAmount;
 
             switch (Function)
             {
-                case IFunction.Admin:
+                case (int)IFunction.Admin:
                     discountAmount = 50;
                     break;
-                case IFunction.Administration:
+                case (int)IFunction.Administration:
                     discountAmount = 15;
                     break;
-                case IFunction.Employee:
+                case (int)IFunction.Employee:
                     discountAmount = 10;
                     break;
                 default:
-                    discountAmount = 5;
+                    discountAmount = 0;
                     break;
             }
 

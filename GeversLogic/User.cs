@@ -12,25 +12,26 @@ namespace GeversLogic
 		IUserStorage _UserStorage;
 		public int Id { get; set; }
 		public string Username { get; set; }
-		public string Password { get; private set; }
+		public string Password { get; }
+		public int EmployeeNr { get; set; }
 		public Employee Employee { get; set; }
 		public User(IUserStorage _userStorage)
 		{
 			_UserStorage = _userStorage;
 		}
 
-		public bool CheckExist(string userName, string passWord)
+		public User CheckExist(string userName, string passWord)
 		{
-			if(_UserStorage.CheckExist(userName, passWord))
-			{
-				return true;
-			}
-			return false;
+			return _UserStorage.CheckExist(userName, passWord);
 		}
 
 		public bool isEmployee()
 		{
 			if (this.Employee != null)
+			{
+				return true;
+			}
+			if(this.EmployeeNr != 0)
 			{
 				return true;
 			}

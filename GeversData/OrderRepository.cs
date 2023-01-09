@@ -17,30 +17,6 @@ namespace GeversData
             userStorage = _userStorage;
         }
 
-        public bool AddCar(Car car)
-        {
-            MySqlConnection conn = this.GetDatabaseConnection(true);
-            try
-            {
-                string sql = "INSERT INTO cars (company_id, brand, model, price, construction_year) VALUES (@company_id, @brand, @model, @price, @construction_year)";
-                MySqlCommand command = new MySqlCommand(sql, conn);
-
-                command.Parameters.AddWithValue("@company_id", 1);
-                command.Parameters.AddWithValue("@brand", car.Brand);
-                command.Parameters.AddWithValue("@model", car.Model);
-                command.Parameters.AddWithValue("@price", car.Price);
-                command.Parameters.AddWithValue("@construction_year", car.ConstructionYear);
-
-                command.ExecuteReader();
-                return true;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
         public List<User> GetUsers()
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
@@ -77,7 +53,8 @@ namespace GeversData
             {
                 List<Car> cars = new List<Car>();
 
-                string sql = "SELECT * FROM cars";
+
+                string sql = "SELECT * FROM cars WHERE (cars.id IN(SELECT car_id FROM car_order))";
 
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -85,6 +62,7 @@ namespace GeversData
                 while (reader.Read())
                 {
                     Car car = new Car(carStorage);
+                    car.Id = Convert.ToInt32(reader["id"]);
                     car.Model = Convert.ToString(reader["model"]);
                     car.Brand = Convert.ToString(reader["brand"]);
 
@@ -103,27 +81,29 @@ namespace GeversData
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
             {
-                string sql;
-                if (order.User != null) sql = "INSERT INTO orders (user_id, total) VALUES (@user_id, @total)";              
-                else sql = "INSERT INTO orders (total) VALUES (@total)";
+                string sql = "INSERT INTO orders (user_id, total) VALUES (@user_id, @total)";              
 
                 MySqlCommand command = new MySqlCommand(sql, conn);
 
-                if (order.User != null) command.Parameters.AddWithValue("@user_id", order.User.Id);
-
-                //command.Parameters.AddWithValue("@employee_nr", 1);
+                command.Parameters.AddWithValue("@user_id", order.User.Id);
                 command.Parameters.AddWithValue("@total", order.getTotalPrice());
+                command.ExecuteReader();
 
-                int orderId = Convert.ToInt32(command.ExecuteScalar());
+                int orderId = Convert.ToInt32(command.LastInsertedId);
 
-                if(order.Cars.Count > 0)
+                if (order.Cars.Count > 0)
                 {
-                    return saveCarsToOrder(order.Cars, orderId);
-                }
+                    saveCarsToOrder(order.Cars, orderId);
 
+                    return true;
+                }
+                else
+                {
+                    return true;
+
+                }
                 // command.Parameters.AddWithValue("@cars", order.Cars);
 
-                return true;
             }
             finally
             {
@@ -131,7 +111,7 @@ namespace GeversData
             }
         }
 
-        private bool saveCarsToOrder(List<Car> cars, int orderId)
+        private void saveCarsToOrder(List<Car> cars, int orderId)
         {
             MySqlConnection conn = this.GetDatabaseConnection(true);
             try
@@ -143,17 +123,40 @@ namespace GeversData
 
                     command.Parameters.AddWithValue("@order_id", orderId);
                     command.Parameters.AddWithValue("@car_id", car.Id);
+
+                    command.ExecuteReader();
+
+                    foreach (Accessoire accessoire in car.accessoires)
+                    {
+                        saveAccessoiresToOrder(car, accessoire);
+                    }
                 }
-                return true;
-            }
-            catch(Exception e)
-            {
-                return false;
             }
             finally
             {
                 conn.Close();
             }
         }
+
+        private void saveAccessoiresToOrder(Car car, Accessoire accessoire)
+        {
+            MySqlConnection conn = this.GetDatabaseConnection(true);
+            try
+            {
+                string sql = "INSERT INTO car_accessoire (accessoire_id, car_id) VALUES (@accessoire_id, @car_id)";
+                MySqlCommand command = new MySqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@accessoire_id", accessoire.Id);
+                command.Parameters.AddWithValue("@car_id", car.Id);
+
+                command.ExecuteReader();
+            }
+            finally
+            {
+
+                conn.Close();
+            }
+        }
+
     }
 }

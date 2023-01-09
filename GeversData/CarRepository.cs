@@ -31,6 +31,7 @@ namespace GeversData
                 while (reader.Read())
                 {
                     Accessoire accessoire = new Accessoire();
+                    accessoire.Id = Convert.ToInt32(reader["id"]);
                     accessoire.Name = Convert.ToString(reader["name"]);
                     accessoire.Price = Convert.ToDecimal(reader["price"]);
 

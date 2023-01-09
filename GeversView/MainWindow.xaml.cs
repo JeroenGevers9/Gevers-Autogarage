@@ -28,12 +28,20 @@ namespace GeversView
         {
             InitializeComponent();
             InstantiateFactory();
-            //buttonVisibility();
         }
+
+        public MainWindow(User user)
+        {
+            InitializeComponent();
+            InstantiateFactory();
+            loggedInUser = user;
+            buttonVisibility();
+        }
+
         Company _company;
         Car car;
         GeversLogic.Order order;
-        User user;
+        User loggedInUser;
 
         RepositoryFactory factory;
 
@@ -57,9 +65,20 @@ namespace GeversView
         }
         private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow ow = new OrderWindow(factory, order);
-            ow.Show();
-            this.Close();
+            if(loggedInUser != null)
+            {
+                order.User = loggedInUser;
+                OrderWindow ow = new OrderWindow(factory, order);
+                ow.Show();
+                this.Close();
+            }
+            else
+            {
+                Login loginWindow = new Login(_company, userStorage);
+                loginWindow.Show();
+                this.Close();
+            }
+      
         }
 
         private void btnShowOrders_Click(object sender, RoutedEventArgs e)
@@ -101,32 +120,32 @@ namespace GeversView
         private void InstantiateUserRepo()
         {
             userStorage = factory.GetUserStorage();
-            user = new GeversLogic.User(userStorage);
+            loggedInUser = new GeversLogic.User(userStorage);
         }
 
 
-        //private void buttonVisibility()
-        //{
-        //    if (Classes.Session.getIsEmployee())
-        //    {
-        //        btnLogin.Visibility = Visibility.Hidden;
-        //        btnShowOrders.Visibility = Visibility.Visible;
-        //        btnCreateCar.Visibility = Visibility.Visible;
-        //        lblUsername.Content = Classes.Session.getUserName();
+        private void buttonVisibility()
+        {
+            if (this.loggedInUser.isEmployee())
+            {
+                btnLogin.Visibility = Visibility.Hidden;
+                btnShowOrders.Visibility = Visibility.Visible;
+                btnCreateCar.Visibility = Visibility.Visible;
+                lblUsername.Content = loggedInUser.Username;
 
-        //    }
-        //    else if(Classes.Session.getLoggedIn())
-        //    {
-        //        btnLogin.Visibility = Visibility.Hidden;
-        //        btnShowOrders.Visibility = Visibility.Hidden;
-        //        btnCreateCar.Visibility = Visibility.Hidden;
-        //        lblUsername.Content = Classes.Session.getUserName();
-        //    }
-        //    else
-        //    {
-        //        btnShowOrders.Visibility = Visibility.Hidden;
-        //    }
-        //}
+            }
+            else if (this.loggedInUser != null)
+            {
+                btnLogin.Visibility = Visibility.Hidden;
+                btnShowOrders.Visibility = Visibility.Hidden;
+                btnCreateCar.Visibility = Visibility.Hidden;
+                lblUsername.Content = loggedInUser.Username;
+            }
+            else
+            {
+                btnShowOrders.Visibility = Visibility.Hidden;
+            }
+        }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {

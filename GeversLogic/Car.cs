@@ -8,7 +8,7 @@ namespace GeversLogic
     {
 		public List<Accessoire> accessoires;
 		private ICarStorage carStorage;
-		public int Id { get; }
+		public int Id { get; set; }
 		public string Model { get; set; }
 		public string Brand { get; set; }
 		public int ConstructionYear { get; set; }
