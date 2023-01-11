@@ -31,7 +31,7 @@ namespace GeversData
         }
         public ICompanyStorage GetCompanyStorage()
         {
-            return new CompanyRepository(Server, Database, UserId, Password, this.GetCarStorage(), this.GetUserStorage());
+            return new CompanyRepository(Server, Database, UserId, Password, this.GetCarStorage(), this.GetUserStorage(), this.GetOrderStorage());
         }
 
         public IOrderStorage GetOrderStorage()

@@ -9,15 +9,24 @@ namespace GeversLogic
         IOrderStorage orderStorage;
         ICarStorage carStorage;
 
+        public int OrderNr { get; set; }
         public List<Car> Cars { get; set; }
         public User User { get; set; }
         public Company Company { get; set; }
-        public decimal TotalPrice { get; private set; }
 
+        private decimal totalPrice;
+
+        public void setPrice(decimal price)
+        {
+            this.totalPrice = price;
+        }
         public decimal getTotalPrice()
         {
             decimal total = 0;
-            if(this.Cars.Count > 0)
+
+            if (totalPrice != 0) return totalPrice;
+
+            if(this.Cars != null && this.Cars.Count > 0)
             {
                 foreach(Car car in this.Cars)
                 {
@@ -26,7 +35,7 @@ namespace GeversLogic
                 }
             }
 
-            if (this.User.Employee != null)
+            if (this.User != null && this.User.Employee != null)
             {
                total = applyEmployeeDiscount(total);
             }

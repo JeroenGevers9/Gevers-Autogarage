@@ -28,6 +28,7 @@ namespace GeversView
         {
             InitializeComponent();
             InstantiateFactory();
+            buttonVisibility();
         }
 
         public MainWindow(User user)
@@ -65,7 +66,7 @@ namespace GeversView
         }
         private void btnCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            if(loggedInUser != null)
+            if(loggedInUser.Username != null)
             {
                 order.User = loggedInUser;
                 OrderWindow ow = new OrderWindow(factory, order);
@@ -83,7 +84,17 @@ namespace GeversView
 
         private void btnShowOrders_Click(object sender, RoutedEventArgs e)
         {
-
+            if (loggedInUser.Username != null && loggedInUser.isEmployee())
+            {
+                order.User = loggedInUser;
+                OrderView ov = new OrderView(factory);
+                ov.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("U bent niet bevoegd om deze pagina te bekijken.");
+            }
         }
 
 
@@ -134,16 +145,17 @@ namespace GeversView
                 lblUsername.Content = loggedInUser.Username;
 
             }
-            else if (this.loggedInUser != null)
+            else if (this.loggedInUser.Username != null)
             {
                 btnLogin.Visibility = Visibility.Hidden;
                 btnShowOrders.Visibility = Visibility.Hidden;
-                btnCreateCar.Visibility = Visibility.Hidden;
                 lblUsername.Content = loggedInUser.Username;
             }
             else
             {
+                btnLogin.Visibility = Visibility.Visible;
                 btnShowOrders.Visibility = Visibility.Hidden;
+                btnCreateCar.Visibility = Visibility.Hidden;
             }
         }
 

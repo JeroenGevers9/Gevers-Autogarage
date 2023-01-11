@@ -25,7 +25,6 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="btnTradeValue" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inruilwaarde berekenen" Click="btnTradeValue_Click"/>
             <Button x:Name="btnCreateOrder" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Order maken" Click="btnCreateOrder_Click" />
-            <Button x:Name="btnCreateLeasePlan" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Lease plan opstellen" Click="btnCreateLeasePlan_Click"/>
             <Button x:Name="btnShowOrders" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bestellingen bekijken" Click="btnShowOrders_Click"/>
             <Button x:Name="btnCreateCar" Height="60px" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Auto aanmaken" Click="btnCreateCar_Click" Margin="1,0"/>
         </StackPanel>

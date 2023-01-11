@@ -68,7 +68,9 @@ namespace GeversView
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            MainWindow mw;
+            if (order.User != null) mw = new MainWindow(order.User);
+            else mw = new MainWindow();
             mw.Show();
             this.Close();
         }

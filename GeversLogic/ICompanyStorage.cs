@@ -8,5 +8,6 @@ namespace GeversLogic
     {
         List<Car> GetCars();
         List<User> GetUsers();
+        List<Order> GetOrders();
     }
 }
