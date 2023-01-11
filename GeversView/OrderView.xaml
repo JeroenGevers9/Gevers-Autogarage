@@ -13,8 +13,7 @@
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="stackOrders" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30,10,0" Grid.Row="0" Grid.Column="1">
-            <DockPanel x:Name="orderRow" ></DockPanel>
-        </StackPanel>
+        <StackPanel x:Name="stackOrders" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30,10,0" Grid.Row="0" Grid.Column="1"/>
+        <DataGrid x:Name="dgOrders" AutoGenerateColumns="True"           ItemsSource="{Binding Path=DataTable, Mode=TwoWay}" Grid.Column="1"/>
     </Grid>
 </Window>

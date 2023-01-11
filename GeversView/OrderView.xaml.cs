@@ -37,19 +37,18 @@ namespace GeversView
         public void LoadOrders()
         {
             DataTable dt = new DataTable();
-            //dgOrders.Columns.Add(new DataGridColumn("OrderNummer", typeof(int)));
-            //dgOrders.Columns.Add(new DataGridColumn("Gebruiker", typeof(string)));
-            //dgOrders.Columns.Add(new DataGridColumn("Totaalprijs", typeof(int)));
-            //dgOrders.Columns.Add(new DataGridColumn("Werknemer", typeof(int)));
+            dt.Columns.Add(new DataColumn("OrderNummer", typeof(int)));
+            dt.Columns.Add(new DataColumn("Gebruiker", typeof(string)));
+            dt.Columns.Add(new DataColumn("Totaalprijs", typeof(int)));
+            dt.Columns.Add(new DataColumn("Werknemer", typeof(int)));
 
 
-            //foreach (GeversLogic.Order order in companyStorage.GetOrders())
-            //{
-            //    orderRow.Children.Add()
-            //    dgOrders..Add(order.OrderNr, order.User.Username, order.getTotalPrice(), order.User.EmployeeNr);
-            //}
-            //dgOrders.Items.Add()
-            //dgOrders.ItemsSource = dt.DefaultView;
+            foreach (GeversLogic.Order order in companyStorage.GetOrders())
+            {
+                dt.Rows.Add(order.OrderNr, order.User.Username, order.getTotalPrice(), order.User.EmployeeNr);
+            }
+
+            dgOrders.DataContext = dt.DefaultView;
         }
     }
 }
