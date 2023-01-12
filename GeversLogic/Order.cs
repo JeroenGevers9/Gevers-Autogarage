@@ -35,7 +35,7 @@ namespace GeversLogic
                 }
             }
 
-            if (this.User != null && this.User.Employee != null)
+            if (this.User.isEmployee())
             {
                total = applyEmployeeDiscount(total);
             }
@@ -47,7 +47,7 @@ namespace GeversLogic
         {
             int discountAmount = this.User.Employee.getDiscountAmount();
 
-            total = total % discountAmount;
+            total = (total / 100) * (100 - discountAmount);
 
             return total;
         }

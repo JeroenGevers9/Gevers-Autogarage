@@ -28,7 +28,7 @@ namespace GeversLogic
 		public decimal getAccessoireTotal()
 		{
 			decimal total = 0;
-			if(this.accessoires.Count > 0)
+			if(this.accessoires != null && this.accessoires.Count > 0)
 			{
 				foreach (Accessoire accessoire in this.accessoires)
 				{

@@ -48,7 +48,7 @@ namespace GeversView
                 dt.Rows.Add(order.OrderNr, order.User.Username, order.getTotalPrice(), order.User.EmployeeNr);
             }
 
-            dgOrders.DataContext = dt.DefaultView;
+            dgOrders.ItemsSource = dt.DefaultView;
         }
     }
 }

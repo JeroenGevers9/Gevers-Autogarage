@@ -100,10 +100,7 @@ namespace GeversData
                 else
                 {
                     return true;
-
                 }
-                // command.Parameters.AddWithValue("@cars", order.Cars);
-
             }
             finally
             {

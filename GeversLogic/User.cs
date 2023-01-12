@@ -31,10 +31,6 @@ namespace GeversLogic
 			{
 				return true;
 			}
-			if(this.EmployeeNr != 0)
-			{
-				return true;
-			}
 			return false;
 		}
 
