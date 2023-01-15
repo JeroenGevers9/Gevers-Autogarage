@@ -165,12 +165,5 @@ namespace GeversView
             loginWindow.Show();
             this.Close();
         }
-
-        private void btnCreateLeasePlan_Click(object sender, RoutedEventArgs e)
-        {
-            LeaseWindow leaseWindow= new LeaseWindow();
-            leaseWindow.Show();
-            this.Hide();
-        }
     }
 }
