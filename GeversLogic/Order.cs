@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace GeversLogic
@@ -14,7 +15,7 @@ namespace GeversLogic
         public List<Car> Cars { get; set; }
         public User User { get; set; }
         public Company Company { get; set; }
-
+        private IEDiscountClasses discountClasses;
         private decimal totalPrice;
 
         public void setPrice(decimal price)
@@ -51,12 +52,12 @@ namespace GeversLogic
         private decimal applyDiscount(decimal total)
         {
 
-            List<string> discountClasses = getAllDiscountClasses();
-            foreach (string discountClass in discountClasses)
+            foreach (string className in Enum.GetNames(typeof(IEDiscountClasses)))
             {
+                string discountClass = "GeversLogic." + className;
                 int discountAmount = 0;
 
-                if (discountClass == "GeversLogic.Employee")
+                if (className == "Employee")
                 {
                     var objectType = Type.GetType(discountClass);
                     var objectClass = Activator.CreateInstance(objectType, new object[] {userStorage, User }) as IDiscountable;
@@ -90,12 +91,7 @@ namespace GeversLogic
             return total;
         }
 
-        private List<string> getAllDiscountClasses()
-        {
-            return AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes())
-                .Where(x => typeof(IDiscountable).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
-                .Select(x => x.FullName).ToList();
-        }
+        
 
         public bool Save()
         {

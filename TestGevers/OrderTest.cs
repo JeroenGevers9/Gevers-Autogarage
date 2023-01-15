@@ -39,8 +39,7 @@ namespace TestGevers
         public void CalculateOrderWithDiscount()
         {
             // Arrange
-            int discountAmount = 15;
-            int totalPrice = (50000 / 100) * (100 - discountAmount);
+            int totalPrice = 29750;
 
             user = new User(userStorage);
             user.EmployeeNr = 12345;
