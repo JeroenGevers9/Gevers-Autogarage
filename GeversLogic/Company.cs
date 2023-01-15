@@ -4,11 +4,13 @@ using System.Text;
 
 namespace GeversLogic
 {
-    public class Company 
+    public class Company : IDiscountable, ICompanyStorage
     {
         private ICompanyStorage _CompanyRepository;
         private List<Car> Cars = new List<Car>();
         private List<User> Users = new List<User>();
+        private List<Order> Orders = new List<Order>();
+
         private string Name;
 
 
@@ -16,9 +18,12 @@ namespace GeversLogic
         {
             _CompanyRepository = companyRepository;
         }
+        public Company()
+        {
+        }
 
 
-        public List<Car> getAllCars()
+        public List<Car> GetCars()
         {
             foreach (Car car in _CompanyRepository.GetCars())
             {
@@ -27,7 +32,26 @@ namespace GeversLogic
             return Cars;
         }
 
-        public List<User> getUsers()
+        public List<Order> GetOrders()
+        {
+            foreach (Order order in _CompanyRepository.GetOrders())
+            {
+                Orders.Add(order);
+            }
+            return Orders;
+        }
+
+        // New years discount for January
+        public int GetDiscountAmount()
+        {
+            if(DateTime.Now.Month == 1)
+            {
+                return 30;
+            }
+            return 0;
+        }
+
+        public List<User> GetUsers()
         {
             foreach (User user in _CompanyRepository.GetUsers())
             {

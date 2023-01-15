@@ -21,10 +21,12 @@ namespace GeversView
     public partial class CarWindow : Window
     {
         ICarStorage carStorage;
-        public CarWindow(ICarStorage _carStorage)
+        User user;
+        public CarWindow(ICarStorage _carStorage, User _user)
         {
             InitializeComponent();
             carStorage = _carStorage;
+            user = _user;
         }
 
         private void btnSaveCar_Click(object sender, RoutedEventArgs e)
@@ -44,7 +46,7 @@ namespace GeversView
             if (carStorage.Create(car))
             {
                 MessageBox.Show("Auto successvol toegevoegd");
-                MainWindow mw = new MainWindow();
+                MainWindow mw = new MainWindow(user);
                 mw.Show();
                 this.Close();
             }

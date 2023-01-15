@@ -21,7 +21,7 @@ namespace TestGevers
             // Arrange
             int totalPrice = 50000; 
 
-            Order order = new Order(orderStorage, carStorage);
+            Order order = new Order(orderStorage, userStorage);
             car = new Car(carStorage);
             car.Brand = "Audi";
             car.Model = "A7";
@@ -42,12 +42,12 @@ namespace TestGevers
             int discountAmount = 15;
             int totalPrice = (50000 / 100) * (100 - discountAmount);
 
-            Employee employee = new Employee();
-            employee.Function = 1;
-
             user = new User(userStorage);
             user.EmployeeNr = 12345;
             user.Username = "Test 1";
+
+            Employee employee = new Employee(userStorage, user);
+            employee.Function = 1;
             user.Employee = employee;
 
             car = new Car(carStorage);
@@ -55,7 +55,7 @@ namespace TestGevers
             car.Model = "A7";
             car.Price = 50000;
 
-            Order order = new Order(orderStorage, carStorage);
+            Order order = new Order(orderStorage, userStorage);
             order.User = user;
 
             // Act
@@ -63,7 +63,7 @@ namespace TestGevers
 
             //Assert
             Assert.AreEqual(totalPrice, order.getTotalPrice());
-            Assert.AreEqual(15, user.Employee.getDiscountAmount());
+            Assert.AreEqual(15, user.Employee.GetDiscountAmount());
         }
 
     }

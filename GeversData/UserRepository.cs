@@ -55,7 +55,7 @@ namespace GeversData
 
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
-                Employee employee = new Employee();
+                Employee employee = new Employee(this, user);
 
                 while (reader.Read())
                 {

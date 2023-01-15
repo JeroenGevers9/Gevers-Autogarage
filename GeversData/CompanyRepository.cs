@@ -96,7 +96,7 @@ namespace GeversData
                     if (reader["employee_id"] != DBNull.Value) user.EmployeeNr = Convert.ToInt32(reader["employee_id"]);
                     if (reader["username"] != DBNull.Value) user.Username = Convert.ToString(reader["username"]);
                     
-                    Order order = new Order(orderStorage, carStorage);
+                    Order order = new Order(orderStorage, userStorage);
                     order.OrderNr = Convert.ToInt32(reader["order_nr"]);
                     order.setPrice(Convert.ToDecimal(reader["total"]));
                     order.User = user;

@@ -60,7 +60,7 @@ namespace GeversView
 
         private void btnCreateCar_Click(object sender, RoutedEventArgs e)
         {
-            CarWindow cw = new CarWindow(factory.GetCarStorage()) ;
+            CarWindow cw = new CarWindow(factory.GetCarStorage(), loggedInUser);
             cw.Show();
             this.Close();
         }
@@ -126,7 +126,7 @@ namespace GeversView
         private void InstantiateOrderRepo()
         {
             orderStorage = factory.GetOrderStorage();
-            order = new GeversLogic.Order(orderStorage, carStorage);
+            order = new GeversLogic.Order(orderStorage, userStorage);
         }
         private void InstantiateUserRepo()
         {

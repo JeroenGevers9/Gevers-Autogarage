@@ -42,7 +42,7 @@ namespace GeversView
 
         private void getCarList()
         {
-            foreach(Car car in company.getAllCars())
+            foreach(Car car in company.GetCars())
             {
                 lbxCars.Items.Add(car);
             }
